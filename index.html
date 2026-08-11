@@ -55,7 +55,6 @@
     border:1px solid #f0e6f7;
   }
 
-  /* Header y Estadísticas */
   .topbar{ padding:18px 20px 10px; }
 
   .name-row{
@@ -114,7 +113,6 @@
   .fill-fun{ background:linear-gradient(90deg,var(--pink-dark),var(--pink)); }
   .fill-energy{ background:linear-gradient(90deg,var(--purple-dark),var(--purple)); }
 
-  /* Escenario del personaje con Temas Dinámicos */
   .stage{
     position:relative;
     height:340px;
@@ -126,22 +124,15 @@
     transition:background 0.5s ease;
   }
 
-  /* Temas de Fondo */
-  .stage.bg-night {
-    background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 70%);
-  }
+  .stage.bg-night { background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 70%); }
   .stage.bg-night .ground { background: #1e3a29; }
   .stage.bg-night .ground::before { background: #14281d; }
 
-  .stage.bg-forest {
-    background: linear-gradient(180deg, #134e5e 0%, #71b280 70%);
-  }
+  .stage.bg-forest { background: linear-gradient(180deg, #134e5e 0%, #71b280 70%); }
   .stage.bg-forest .ground { background: #386641; }
   .stage.bg-forest .ground::before { background: #2a4830; }
 
-  .stage.bg-sunset {
-    background: linear-gradient(180deg, #ff7e5f 0%, #feb47b 70%);
-  }
+  .stage.bg-sunset { background: linear-gradient(180deg, #ff7e5f 0%, #feb47b 70%); }
   .stage.bg-sunset .ground { background: #d4a373; }
   .stage.bg-sunset .ground::before { background: #bc8a5f; }
 
@@ -169,7 +160,6 @@
     opacity:.55; transition:background 0.5s ease;
   }
 
-  /* Elementos de Decoración de Casa */
   .home-decor{ position:absolute; z-index:4; font-size:32px; pointer-events:none; }
   #decorBed{ bottom:38px; left:20px; font-size:48px; display:none; }
   #decorPlant{ bottom:52px; right:22px; font-size:36px; display:none; }
@@ -178,8 +168,8 @@
 
   .bunny-wrap{
     position:absolute;
-    bottom:64px; left:50%;
-    width:190px; height:205px;
+    bottom:60px; left:50%;
+    width:190px; height:210px;
     transform:translateX(-50%);
     transform-origin:bottom center;
     z-index:5;
@@ -188,7 +178,7 @@
   #bunny{ width:100%; height:100%; overflow:visible; }
 
   #body-group{ transform-origin:120px 200px; animation:breathe 3.2s ease-in-out infinite; }
-  @keyframes breathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.025,0.975); } }
+  @keyframes breathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.02,0.98); } }
 
   #ear-left{ transform-origin:88px 78px; }
   #ear-right{ transform-origin:152px 78px; }
@@ -216,17 +206,18 @@
   .sleepy #eyes-open{ display:none; }
   .sleepy .zzz-eyes{ display:block; }
 
-  /* Gafas dibujadas en SVG */
-  #svgGlasses{ display:none; }
+  /* Gafas y Monóculo SVG */
+  #svgGlasses, #svgMonocle{ display:none; }
   .has-glasses #svgGlasses{ display:block; }
+  .has-monocle #svgMonocle{ display:block; }
 
   /* Capas de Ropa SVG */
   .cloth-layer { display: none; }
   .has-cloth-tshirt #clothTshirt { display: block; }
   .has-cloth-hoodie #clothHoodie { display: block; }
   .has-cloth-suit #clothSuit { display: block; }
+  .has-cloth-jacket #clothJacket { display: block; }
 
-  /* Globo de diálogo */
   .bubble{
     position:absolute; top:14px; left:50%;
     transform:translateX(-50%) scale(.8);
@@ -241,7 +232,6 @@
     border-width:6px 6px 0 6px; border-style:solid; border-color:#fff transparent transparent transparent;
   }
 
-  /* Bañera */
   .tub{
     position:absolute; bottom:50px; left:50%; width:200px; height:65px;
     transform:translateX(-50%) scale(0.9);
@@ -257,7 +247,6 @@
   }
   .bathing .tub{ opacity:1; transform:translateX(-50%) scale(1); }
 
-  /* Capa de descanso */
   .sleep-overlay{
     position:absolute; inset:0;
     background:radial-gradient(circle at 75% 20%, rgba(255,255,255,0.15), transparent 40%), linear-gradient(180deg,#2b2354ee,#4a3c78dd 70%, #6b5a9bcc);
@@ -277,7 +266,6 @@
   }
   .stage-hint.show{ opacity:1; }
 
-  /* Partículas y Flotantes */
   .particle{ position:absolute; pointer-events:none; font-size:20px; z-index:30; animation:floatUp 1s ease-out forwards; }
   @keyframes floatUp{
     0%{ opacity:1; transform:translate(-50%,-50%) scale(0.6); }
@@ -286,7 +274,6 @@
   }
   .float-text{ position:absolute; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:15px; z-index:30; pointer-events:none; animation:floatUp 1s ease-out forwards; }
 
-  /* Menú Flotante de Comida */
   .tray{
     position:absolute; left:0; right:0; bottom:0;
     display:flex; justify-content:center; gap:10px; padding:12px 10px;
@@ -309,7 +296,6 @@
     font-size:10px; font-weight:800; border-radius:10px; padding:1px 5px; box-shadow:0 2px 4px rgba(0,0,0,0.2);
   }
 
-  /* Menú Dock en 2 Filas */
   .dock{ display:grid; grid-template-columns:repeat(4, 1fr); padding:14px 12px; gap:8px; box-sizing:border-box; }
   .dock-btn{
     background:var(--white); border:none; height:58px; border-radius:16px;
@@ -325,7 +311,6 @@
     box-shadow:0 4px 10px rgba(230,110,30,0.28) inset, 0 6px 14px rgba(150,120,180,0.15);
   }
 
-  /* Monedas y Ventanas */
   .wallet{
     display:flex;justify-content:center;align-items:center;gap:6px;
     margin:0 20px 6px;padding:6px 12px;border-radius:14px;
@@ -373,21 +358,23 @@
   .empty{grid-column:1/-1;text-align:center;padding:30px;color:#8B7F99}
   .equipped{outline:3px solid #5FC9C0}
   
-  /* Posicionamiento Ajustado y Preciso de Accesorios */
+  /* Ajuste Preciso de Posicionamiento para Sombrero y Moño */
   .accessory-badge{
     position:absolute; z-index:8; pointer-events:none;
-    display:flex; align-items:center; justify-content:center;
+    display:flex; align-items:center; justify-content:center; width:100%;
   }
-  #accHat{ top:12px; left:50%; transform:translateX(-50%); font-size:38px; }
-  #accBow{ top:142px; left:50%; transform:translateX(-50%) scale(0.9); font-size:26px; }
+  #accHat{ top:-8px; left:0; font-size:42px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.15)); }
+  #accBow{ top:116px; left:0; font-size:30px; filter:drop-shadow(0 2px 4px rgba(0,0,0,0.12)); }
 
   .shop-tabs{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap}
   .shop-tab{flex:1;border:0;padding:8px 4px;border-radius:12px;background:#EFE7F5;font-weight:800;cursor:pointer;font-size:11px}
   .shop-tab.active{background:#FFD9BC}
 
-  /* Quiz Math / Word UI */
+  /* Quiz y Simon Game UI */
   .quiz-btn{background:white;border:2px solid #EFE7F5;border-radius:12px;padding:10px;margin:5px;font-weight:800;font-size:16px;cursor:pointer;width:45%;color:var(--plum)}
-  .quiz-btn:active{background:#FF9EB5;color:white}
+  .simon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
+  .simon-btn{height:70px;border:0;border-radius:16px;font-size:28px;cursor:pointer;opacity:0.8;transition:transform 0.1s, opacity 0.2s}
+  .simon-btn.active-pad{opacity:1;transform:scale(1.08);box-shadow:0 0 15px currentColor}
 
   /* Chat */
   .chat-screen{display:none;flex-direction:column;height:100%}
@@ -451,6 +438,10 @@
     <div class="stage-hint" id="stageHint">shh… está durmiendo</div>
 
     <div class="bunny-wrap" id="bunnyWrap">
+      <!-- Accesorios Posicionados -->
+      <div class="accessory-badge" id="accHat"></div>
+      <div class="accessory-badge" id="accBow"></div>
+
       <div id="bunny-wrap-inner" style="width:100%;height:100%;">
       <svg id="bunny" viewBox="0 0 240 260">
         <ellipse cx="182" cy="196" rx="14" ry="14" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
@@ -459,28 +450,55 @@
           <ellipse cx="120" cy="196" rx="62" ry="52" fill="#FFFFFF" stroke="#EDE3F5" stroke-width="2"/>
           <ellipse cx="120" cy="210" rx="34" ry="24" fill="#FFF0F5" opacity="0.7"/>
 
-          <!-- ROPA SVG ILUSTRADA (Camiseta, Sudadera, Traje) -->
+          <!-- ROPA SVG MEJORADA ADAPTADA AL CUERPO -->
+          <!-- 1. Camiseta Casual -->
           <g id="clothTshirt" class="cloth-layer">
-            <path d="M72 175 C70 215, 170 215, 168 175 C160 160, 80 160, 72 175 Z" fill="#FF5733" stroke="#C70039" stroke-width="2"/>
-            <path d="M100 162 Q120 172 140 162" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+            <path d="M 64 182 C 60 230, 180 230, 176 182 C 160 156, 80 156, 64 182 Z" fill="#FF5733" stroke="#C70039" stroke-width="2.5"/>
+            <!-- Manga Izq -->
+            <path d="M 64 182 Q 52 200 66 212" fill="#FF5733" stroke="#C70039" stroke-width="2"/>
+            <!-- Manga Der -->
+            <path d="M 176 182 Q 188 200 174 212" fill="#FF5733" stroke="#C70039" stroke-width="2"/>
+            <!-- Cuello -->
+            <path d="M 98 162 Q 120 178 142 162" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+            <!-- Estampado Estrella -->
+            <polygon points="120,185 123,193 131,193 125,198 127,206 120,201 113,206 115,198 109,193 117,193" fill="#FFEAA7"/>
           </g>
           
+          <!-- 2. Sudadera / Hoody Estilizada -->
           <g id="clothHoodie" class="cloth-layer">
-            <path d="M68 170 C65 220, 175 220, 172 170 C160 155, 80 155, 68 170 Z" fill="#3498DB" stroke="#2980B9" stroke-width="2"/>
-            <rect x="95" y="195" width="50" height="20" rx="5" fill="#2980B9"/>
-            <circle cx="110" cy="170" r="3" fill="#FFF"/>
-            <circle cx="130" cy="170" r="3" fill="#FFF"/>
+            <path d="M 60 180 C 58 236, 182 236, 180 180 C 162 152, 78 152, 60 180 Z" fill="#3498DB" stroke="#1F618D" stroke-width="2.5"/>
+            <!-- Bolsillo Canguro -->
+            <path d="M 92 208 L 148 208 L 142 228 L 98 228 Z" fill="#2980B9" stroke="#1F618D" stroke-width="1.5"/>
+            <!-- Cintas -->
+            <line x1="112" y1="162" x2="110" y2="185" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+            <line x1="128" y1="162" x2="130" y2="185" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
           </g>
 
+          <!-- 3. Traje Elegante con Corbata -->
           <g id="clothSuit" class="cloth-layer">
-            <path d="M70 170 C68 218, 172 218, 170 170 Z" fill="#2C3E50"/>
-            <polygon points="120,165 100,190 140,190" fill="#FFFFFF"/>
-            <polygon points="120,172 115,200 120,205 125,200" fill="#E74C3C"/>
+            <!-- Saco Negro -->
+            <path d="M 62 180 C 58 234, 182 234, 178 180 C 160 154, 80 154, 62 180 Z" fill="#2C3E50" stroke="#1A252F" stroke-width="2.5"/>
+            <!-- Camisa Blanca -->
+            <polygon points="120,158 96,192 144,192" fill="#FFFFFF"/>
+            <!-- Solapas del Saco -->
+            <polygon points="90,158 78,198 102,185" fill="#1A252F"/>
+            <polygon points="150,158 162,198 138,185" fill="#1A252F"/>
+            <!-- Corbata Roja -->
+            <polygon points="120,165 114,198 120,208 126,198" fill="#E74C3C"/>
+          </g>
+
+          <!-- 4. Chaqueta Dorada -->
+          <g id="clothJacket" class="cloth-layer">
+            <path d="M 60 180 C 58 234, 182 234, 180 180 C 160 154, 80 154, 60 180 Z" fill="#F1C40F" stroke="#D4AC0D" stroke-width="2.5"/>
+            <line x1="120" y1="160" x2="120" y2="232" stroke="#B7950B" stroke-width="3"/>
+            <circle cx="112" cy="180" r="3" fill="#2C3E50"/>
+            <circle cx="112" cy="200" r="3" fill="#2C3E50"/>
           </g>
 
           <ellipse cx="86" cy="238" rx="16" ry="11" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
           <ellipse cx="154" cy="238" rx="16" ry="11" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
 
+          <!-- Orejas -->
           <g id="ear-left">
             <path d="M88 78 C68 30, 78 4, 92 4 C104 4, 106 34, 96 82 Z" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
             <path d="M90 70 C76 34, 82 16, 91 16 C99 16, 100 38, 94 74 Z" fill="#FFC2D1"/>
@@ -490,6 +508,7 @@
             <path d="M150 70 C164 34, 158 16, 149 16 C141 16, 140 38, 146 74 Z" fill="#FFC2D1"/>
           </g>
 
+          <!-- Cabeza -->
           <circle cx="120" cy="118" r="56" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
 
           <ellipse cx="86" cy="134" rx="12" ry="7" fill="#FFC2D1" opacity="0.75"/>
@@ -511,6 +530,12 @@
             <line x1="153" y1="116" x2="162" y2="112" stroke="#2B2636" stroke-width="2.5"/>
           </g>
 
+          <!-- Monóculo Elegante SVG -->
+          <g id="svgMonocle">
+            <circle cx="140" cy="116" r="12" fill="rgba(200,240,255,0.3)" stroke="#D4AF37" stroke-width="3"/>
+            <path d="M 152 116 Q 165 130 160 160" fill="none" stroke="#D4AF37" stroke-width="1.8"/>
+          </g>
+
           <g class="zzz-eyes">
             <path d="M93 116 Q100 121 107 116" stroke="#4A3F55" stroke-width="2.4" fill="none" stroke-linecap="round"/>
             <path d="M133 116 Q140 121 147 116" stroke="#4A3F55" stroke-width="2.4" fill="none" stroke-linecap="round"/>
@@ -529,10 +554,6 @@
       </svg>
       </div>
     </div>
-
-    <!-- Sombreros / Moños -->
-    <div class="accessory-badge" id="accHat"></div>
-    <div class="accessory-badge" id="accBow"></div>
 
     <div class="sleep-overlay" id="sleepOverlay"><div class="moon"></div></div>
 
@@ -593,14 +614,16 @@
     <div class="inventory-grid" id="inventoryGrid"></div>
   </div>
 
-  <!-- Pantalla de Juegos -->
+  <!-- Pantalla de Juegos (Ampliadamente extendida) -->
   <div class="screen" id="gameScreen">
     <div class="screen-head"><h2>🎮 Zona de juegos</h2><button type="button" class="close-screen">✕</button></div>
     <div class="game-grid" id="gameMenu">
-      <div class="game-card"><div class="game-icon">➕</div><h3>Mates Rápidas</h3><p>¡Resuelve y gana!</p><button class="play-btn" data-game="math">Jugar (Edu)</button></div>
-      <div class="game-card"><div class="game-icon">🔤</div><h3>Palabras</h3><p>Vocabulario y reflejos</p><button class="play-btn" data-game="words">Jugar (Edu)</button></div>
-      <div class="game-card"><div class="game-icon">🥕</div><h3>Atrapa Zanahorias</h3><p>¡Atrapa 10 rápido!</p><button class="play-btn" data-game="carrot">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">➕</div><h3>Mates Rápidas</h3><p>Resuelve sumas.</p><button class="play-btn" data-game="math">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">🔤</div><h3>Palabras</h3><p>Vocabulario y fotos.</p><button class="play-btn" data-game="words">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">🥕</div><h3>Atrapa Zanahorias</h3><p>Atrapa 10 rápido.</p><button class="play-btn" data-game="carrot">Jugar</button></div>
       <div class="game-card"><div class="game-icon">🧠</div><h3>Memoria</h3><p>Encuentra parejas.</p><button class="play-btn" data-game="memory">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">🎵</div><h3>Repite el Ritmo</h3><p>Sigue el patrón.</p><button class="play-btn" data-game="simon">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">🎯</div><h3>Tiro al Blanco</h3><p>Toca la diana.</p><button class="play-btn" data-game="target">Jugar</button></div>
     </div>
     <div id="gamePlay" style="display:none">
       <div class="game-area" id="gameArea"></div>
@@ -751,7 +774,7 @@
     }
   }
 
-  /* Catálogo Global de Items */
+  /* Catálogo Global con Nuevos Accesorios */
   const catalog = {
     food: [
       {id:'carrot_base', name:'Zanahoria', icon:'🥕', price:0, type:'food', hunger:22, label:'+22'},
@@ -762,11 +785,14 @@
     clothing: [
       {id:'cloth_tshirt', name:'Camiseta Roja', icon:'👕', price:120, type:'clothing', clothClass:'has-cloth-tshirt'},
       {id:'cloth_hoodie', name:'Sudadera Azul', icon:'🧥', price:200, type:'clothing', clothClass:'has-cloth-hoodie'},
-      {id:'cloth_suit', name:'Traje Elegante', icon:'👔', price:350, type:'clothing', clothClass:'has-cloth-suit'}
+      {id:'cloth_suit', name:'Traje Elegante', icon:'👔', price:350, type:'clothing', clothClass:'has-cloth-suit'},
+      {id:'cloth_jacket', name:'Chaqueta Gold', icon:'🧥', price:280, type:'clothing', clothClass:'has-cloth-jacket'}
     ],
     accessory: [
       {id:'hat', name:'Sombrero', icon:'🎩', price:100, type:'accessory', slot:'hat'},
+      {id:'cap', name:'Gorra Urbana', icon:'🧢', price:110, type:'accessory', slot:'hat'},
       {id:'glasses', name:'Gafas', icon:'🤓', price:130, type:'accessory', slot:'glasses'},
+      {id:'monocle', name:'Monóculo', icon:'🧐', price:160, type:'accessory', slot:'glasses'},
       {id:'bow', name:'Moño', icon:'🎀', price:90, type:'accessory', slot:'bow'},
       {id:'crown', name:'Corona', icon:'👑', price:300, type:'accessory', slot:'hat'}
     ],
@@ -792,7 +818,7 @@
 
   function loadSave(){
     try{
-      const old = JSON.parse(localStorage.getItem('copito_save_v4') || 'null');
+      const old = JSON.parse(localStorage.getItem('copito_save_v5') || 'null');
       if(old){
         Object.assign(save, old);
         save.inventory = save.inventory || {};
@@ -805,7 +831,7 @@
   }
 
   function persist(){
-    localStorage.setItem('copito_save_v4', JSON.stringify(save));
+    localStorage.setItem('copito_save_v5', JSON.stringify(save));
     updateCoins();
   }
 
@@ -822,7 +848,6 @@
     save.coins -= n; persist(); return true;
   }
 
-  /* Renderizado Dinámico de Comida */
   function renderFoodTray(){
     tray.innerHTML = '';
     let hasFood = false;
@@ -882,7 +907,6 @@
     btnFeed.classList.toggle('active', feedMenuOpen);
   });
 
-  /* Baño */
   btnBathe.addEventListener('click', () => {
     if(isSleeping){ showHint(); return; }
     isBathing = !isBathing;
@@ -906,7 +930,6 @@
     }
   });
 
-  /* Cosquillas */
   function doTickle(){
     if(isSleeping){ showHint(); return; }
     if(tickleCooldown) return;
@@ -931,7 +954,6 @@
     doTickle();
   });
 
-  /* Descanso */
   function toggleSleep(force){
     isSleeping = (typeof force === 'boolean') ? force : !isSleeping;
     stage.classList.toggle('sleeping', isSleeping);
@@ -967,7 +989,6 @@
   setInterval(decayTick, 3500);
   setInterval(randomIdle, 4200);
 
-  /* Modal y Tienda */
   const coinsEl = document.getElementById('coins');
   const shopScreen = document.getElementById('shopScreen');
   const inventoryScreen = document.getElementById('inventoryScreen');
@@ -1066,12 +1087,14 @@
 
   function renderAccessories(){
     const hat = save.equipped.hat, glasses = save.equipped.glasses, bow = save.equipped.bow, cloth = save.equipped.cloth;
-    document.getElementById('accHat').textContent = hat==='hat'?'🎩':hat==='crown'?'👑':'';
+    document.getElementById('accHat').textContent = hat==='hat'?'🎩':hat==='crown'?'👑':hat==='cap'?'🧢':'';
     document.getElementById('accBow').textContent = bow==='bow'?'🎀':'';
+    
     bunnyWrap.classList.toggle('has-glasses', glasses === 'glasses');
+    bunnyWrap.classList.toggle('has-monocle', glasses === 'monocle');
 
-    // Manejar Ropa SVG
-    bunnyWrap.classList.remove('has-cloth-tshirt', 'has-cloth-hoodie', 'has-cloth-suit');
+    // Manejar Ropa SVG Ajustada
+    bunnyWrap.classList.remove('has-cloth-tshirt', 'has-cloth-hoodie', 'has-cloth-suit', 'has-cloth-jacket');
     if(cloth){
       const clothObj = catalog.clothing.find(c => c.id === cloth);
       if(clothObj) bunnyWrap.classList.add(clothObj.clothClass);
@@ -1095,17 +1118,16 @@
     });
   }
 
-  /* MINIJUEGOS EDUCATIVOS Y DIVERTIDOS */
+  /* MINIJUEGOS (AMPLIADOS A 6 JUEGOS) */
 
-  // 1. Juego Educativo: Matemáticas Rápidas
+  // 1. Mates Rápidas
   function startMathGame(){
     gameMenu.style.display='none'; gamePlay.style.display='block';
     let score = 0, rounds = 0;
-    
     function nextQuestion(){
       if(rounds >= 5){
         const reward = score * 10; earnCoins(reward);
-        gameArea.innerHTML = `<div style="font-size:50px">🎓</div><h2>¡Juego Terminado!</h2><p>Respuestas correctas: ${score}/5</p><h2>🪙 +${reward} monedas</h2><button class="play-btn" id="againMath">Jugar Otra Vez</button>`;
+        gameArea.innerHTML = `<div style="font-size:50px">🎓</div><h2>¡Juego Terminado!</h2><p>Aciertos: ${score}/5</p><h2>🪙 +${reward} monedas</h2><button class="play-btn" id="againMath">Jugar Otra Vez</button>`;
         document.getElementById('againMath').onclick = startMathGame;
         return;
       }
@@ -1121,29 +1143,23 @@
         <button type="button" class="close-screen" id="stopGame" style="margin-top:20px">Salir</button>`;
 
       gameArea.querySelectorAll('.quiz-btn').forEach(btn => {
-        btn.onclick = () => {
-          if(parseInt(btn.dataset.ans) === ans){ score++; }
-          nextQuestion();
-        };
+        btn.onclick = () => { if(parseInt(btn.dataset.ans) === ans) score++; nextQuestion(); };
       });
       document.getElementById('stopGame').onclick = () => { gameMenu.style.display='grid'; gamePlay.style.display='none'; };
     }
     nextQuestion();
   }
 
-  // 2. Juego Educativo: Vocabulario
+  // 2. Vocabulario
   function startWordGame(){
     gameMenu.style.display='none'; gamePlay.style.display='block';
-    const words = [
-      {w:'Zanahoria', i:'🥕'}, {w:'Manzana', i:'🍎'}, {w:'Estrella', i:'⭐'},
-      {w:'Galleta', i:'🍪'}, {w:'Pelota', i:'⚽'}, {w:'Sol', i:'☀️'}
-    ];
+    const words = [{w:'Zanahoria', i:'🥕'}, {w:'Manzana', i:'🍎'}, {w:'Estrella', i:'⭐'}, {w:'Galleta', i:'🍪'}, {w:'Pelota', i:'⚽'}, {w:'Sol', i:'☀️'}];
     let score = 0, rounds = 0;
 
     function nextWord(){
       if(rounds >= 5){
         const reward = score * 8; earnCoins(reward);
-        gameArea.innerHTML = `<div style="font-size:50px">📚</div><h2>¡Excelente trabajo!</h2><p>Aciertos: ${score}/5</p><h2>🪙 +${reward} monedas</h2><button class="play-btn" id="againWord">Jugar Otra Vez</button>`;
+        gameArea.innerHTML = `<div style="font-size:50px">📚</div><h2>¡Excelente!</h2><p>Aciertos: ${score}/5</p><h2>🪙 +${reward} monedas</h2><button class="play-btn" id="againWord">Jugar Otra Vez</button>`;
         document.getElementById('againWord').onclick = startWordGame;
         return;
       }
@@ -1152,22 +1168,19 @@
       const opts = [target, ...words.filter(w=>w.w!==target.w).sort(()=>Math.random()-.5).slice(0,2)].sort(()=>Math.random()-.5);
 
       gameArea.innerHTML = `<div class="game-score">🔤 Vocabulario (${rounds}/5)</div>
-        <div style="font-size:24px;font-weight:800;margin:15px 0;">¿Cuál icono es "<b>${target.w}</b>"?</div>
+        <div style="font-size:24px;font-weight:800;margin:15px 0;">¿Cuál es "<b>${target.w}</b>"?</div>
         <div>${opts.map(o => `<button class="quiz-btn" style="font-size:30px" data-word="${o.w}">${o.i}</button>`).join('')}</div>
         <button type="button" class="close-screen" id="stopGame" style="margin-top:20px">Salir</button>`;
 
       gameArea.querySelectorAll('.quiz-btn').forEach(btn => {
-        btn.onclick = () => {
-          if(btn.dataset.word === target.w){ score++; }
-          nextWord();
-        };
+        btn.onclick = () => { if(btn.dataset.word === target.w) score++; nextWord(); };
       });
       document.getElementById('stopGame').onclick = () => { gameMenu.style.display='grid'; gamePlay.style.display='none'; };
     }
     nextWord();
   }
 
-  // 3. Juego Divertido: Zanahorias
+  // 3. Atrapa Zanahorias
   function startCarrotGame(){
     gameMenu.style.display='none'; gamePlay.style.display='block';
     let score=0, time=20, timer=null;
@@ -1176,10 +1189,7 @@
     const board=document.getElementById('board'), scoreEl=gameArea.querySelector('.game-score');
     const target=document.createElement('button'); target.className='game-target'; target.textContent='🥕'; board.appendChild(target);
     function move(){ target.style.left=Math.random()*75+'%'; target.style.top=Math.random()*65+'%'; }
-    target.onclick=()=>{
-      score++; move(); scoreEl.textContent=`🥕 ${score}/10 · ⏱️ ${time}s`;
-      if(score>=10) finish(true);
-    };
+    target.onclick=()=>{ score++; move(); scoreEl.textContent=`🥕 ${score}/10 · ⏱️ ${time}s`; if(score>=10) finish(true); };
     move();
     timer=setInterval(()=>{time--;scoreEl.textContent=`🥕 ${score}/10 · ⏱️ ${time}s`;if(time<=0)finish(false)},1000);
     document.getElementById('stopGame').onclick=()=>{clearInterval(timer);gameMenu.style.display='grid';gamePlay.style.display='none'};
@@ -1192,7 +1202,7 @@
     }
   }
 
-  // 4. Juego Divertido: Memoria
+  // 4. Juego de Memoria
   function startMemoryGame(){
     gameMenu.style.display='none';gamePlay.style.display='block';
     const symbols=['🥕','🍎','⭐','🍪','🥕','🍎','⭐','🍪'];
@@ -1224,12 +1234,102 @@
     document.getElementById('stopGame').onclick=()=>{gameMenu.style.display='grid';gamePlay.style.display='none'};
   }
 
+  // 5. NUEVO JUEGO: Repite el Ritmo (Simon Says)
+  function startSimonGame(){
+    gameMenu.style.display='none'; gamePlay.style.display='block';
+    const colors = [{c:'#FF9EB5',i:'💖'},{c:'#5FC9C0',i:'💎'},{c:'#FFB06B',i:'🌟'},{c:'#B79CF2',i:'🔮'}];
+    let sequence = [], userStep = 0, score = 0;
+
+    gameArea.innerHTML = `<div class="game-score" id="simonTitle">🎵 Observa el patrón...</div>
+      <div class="simon-grid">
+        ${colors.map((item, idx)=>`<button class="simon-btn" style="background:${item.c}" data-pad="${idx}">${item.i}</button>`).join('')}
+      </div>
+      <button type="button" class="close-screen" id="stopGame" style="margin-top:20px">Salir</button>`;
+
+    const pads = gameArea.querySelectorAll('.simon-btn');
+    document.getElementById('stopGame').onclick=()=>{gameMenu.style.display='grid';gamePlay.style.display='none'};
+
+    function flashPad(idx){
+      return new Promise(res=>{
+        pads[idx].classList.add('active-pad');
+        setTimeout(()=>{ pads[idx].classList.remove('active-pad'); setTimeout(res, 250); }, 400);
+      });
+    }
+
+    async function playSequence(){
+      document.getElementById('simonTitle').textContent = `🎵 Nivel ${score + 1} · Observa`;
+      userStep = 0;
+      sequence.push(Math.floor(Math.random()*4));
+      for(let step of sequence){
+        await flashPad(step);
+      }
+      document.getElementById('simonTitle').textContent = `🎵 ¡Tu turno! (${score + 1})`;
+    }
+
+    pads.forEach(p => {
+      p.onclick = async () => {
+        const choice = parseInt(p.dataset.pad);
+        await flashPad(choice);
+        if(choice === sequence[userStep]){
+          userStep++;
+          if(userStep >= sequence.length){
+            score++;
+            setTimeout(playSequence, 800);
+          }
+        } else {
+          const reward = score * 12; earnCoins(reward);
+          gameArea.innerHTML = `<div style="font-size:50px">🎶</div><h2>¡Fin de la melodía!</h2><p>Llegaste al nivel ${score+1}</p><h2>🪙 +${reward}</h2><button class="play-btn" id="againSimon">Jugar Otra Vez</button>`;
+          document.getElementById('againSimon').onclick = startSimonGame;
+        }
+      };
+    });
+
+    playSequence();
+  }
+
+  // 6. NUEVO JUEGO: Tiro al Blanco
+  function startTargetGame(){
+    gameMenu.style.display='none'; gamePlay.style.display='block';
+    let hits = 0, total = 8, current = 0;
+
+    function spawnTarget(){
+      if(current >= total){
+        const reward = hits * 8; earnCoins(reward);
+        gameArea.innerHTML = `<div style="font-size:50px">🎯</div><h2>¡Terminado!</h2><p>Dianas acertadas: ${hits}/${total}</p><h2>🪙 +${reward}</h2><button class="play-btn" id="againTarget">Jugar Otra Vez</button>`;
+        document.getElementById('againTarget').onclick = startTargetGame;
+        return;
+      }
+      current++;
+      gameArea.innerHTML = `<div class="game-score">🎯 Aciertos: ${hits}/${total}</div>
+        <div class="game-board" id="targetBoard"></div>
+        <button type="button" class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
+
+      const board = document.getElementById('targetBoard');
+      document.getElementById('stopGame').onclick=()=>{gameMenu.style.display='grid';gamePlay.style.display='none'};
+
+      const btn = document.createElement('button');
+      btn.className = 'game-target';
+      btn.textContent = '🎯';
+      btn.style.left = Math.random()*70 + 10 + '%';
+      btn.style.top = Math.random()*60 + 10 + '%';
+
+      let hit = false;
+      btn.onclick = () => { hit = true; hits++; spawnTarget(); };
+      board.appendChild(btn);
+
+      setTimeout(() => { if(!hit) spawnTarget(); }, 1200);
+    }
+    spawnTarget();
+  }
+
   document.querySelectorAll('[data-game]').forEach(b=>{
     b.addEventListener('click',()=>({
       math: startMathGame,
       words: startWordGame,
       carrot: startCarrotGame,
-      memory: startMemoryGame
+      memory: startMemoryGame,
+      simon: startSimonGame,
+      target: startTargetGame
     }[b.dataset.game])());
   });
 
