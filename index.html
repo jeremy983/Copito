@@ -55,7 +55,7 @@
     border:1px solid #f0e6f7;
   }
 
-  /* ---------- header / stats ---------- */
+  /* Header y Estadísticas */
   .topbar{
     padding:18px 20px 10px;
   }
@@ -121,10 +121,10 @@
   .fill-fun{ background:linear-gradient(90deg,var(--pink-dark),var(--pink)); }
   .fill-energy{ background:linear-gradient(90deg,var(--purple-dark),var(--purple)); }
 
-  /* ---------- stage ---------- */
+  /* Escenario del personaje */
   .stage{
     position:relative;
-    height:400px;
+    height:340px;
     margin:6px 14px 0;
     border-radius:24px;
     overflow:hidden;
@@ -155,7 +155,7 @@
   .ground{
     position:absolute;
     bottom:0; left:0; right:0;
-    height:130px;
+    height:120px;
     background:var(--ground);
     border-top-left-radius:60% 24px;
     border-top-right-radius:60% 24px;
@@ -172,10 +172,10 @@
 
   .bunny-wrap{
     position:absolute;
-    bottom:74px;
+    bottom:64px;
     left:50%;
-    width:200px;
-    height:216px;
+    width:190px;
+    height:205px;
     transform:translateX(-50%);
     transform-origin:bottom center;
     z-index:5;
@@ -226,7 +226,7 @@
   .sleepy #eyes-open{ display:none; }
   .sleepy .zzz-eyes{ display:block; }
 
-  /* speech bubble */
+  /* Globo de diálogo */
   .bubble{
     position:absolute;
     top:14px; left:50%;
@@ -255,11 +255,11 @@
     border-color:#fff transparent transparent transparent;
   }
 
-  /* tub for bath mode */
+  /* Bañera */
   .tub{
     position:absolute;
-    bottom:60px; left:50%;
-    width:210px; height:70px;
+    bottom:50px; left:50%;
+    width:200px; height:65px;
     transform:translateX(-50%) scale(0.9);
     background:linear-gradient(180deg,#BFE8F5,#8FD3EA);
     border-radius:0 0 50px 50px / 0 0 40px 40px;
@@ -278,7 +278,7 @@
   }
   .bathing .tub{ opacity:1; transform:translateX(-50%) scale(1); }
 
-  /* sleep overlay */
+  /* Capa de descanso */
   .sleep-overlay{
     position:absolute; inset:0;
     background:radial-gradient(circle at 75% 20%, rgba(255,255,255,0.15), transparent 40%), linear-gradient(180deg,#2b2354ee,#4a3c78dd 70%, #6b5a9bcc);
@@ -307,7 +307,7 @@
   }
   .stage-hint.show{ opacity:1; }
 
-  /* particles */
+  /* Efectos y partículas */
   .particle{
     position:absolute;
     pointer-events:none;
@@ -331,7 +331,7 @@
     animation:floatUp 1s ease-out forwards;
   }
 
-  /* food tray */
+  /* Menú flotante de comida */
   .tray{
     position:absolute;
     left:0; right:0; bottom:0;
@@ -360,111 +360,103 @@
   }
   .food-btn:active{ transform:scale(0.88); }
 
-  /* ---------- dock ---------- */
+  /* Menú de Botones en Cuadrícula (2 filas x 4 columnas) */
   .dock{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
-    padding:12px 10px 16px;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    padding:14px 12px;
     gap:8px;
     box-sizing:border-box;
-    overflow:visible;
   }
 
   .dock-btn{
     background:var(--white);
     border:none;
-    flex:0 0 calc(25% - 8px);
-    width:auto;
-    min-width:0;
-    height:60px;
-    border-radius:22px;
+    height:58px;
+    border-radius:16px;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:2px;
-    box-shadow:0 8px 18px rgba(150,120,180,0.18);
+    box-shadow:0 4px 10px rgba(150,120,180,0.12);
     cursor:pointer;
     transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
   }
-  .dock-btn svg{ width:26px; height:26px; }
+  .dock-btn svg{ width:22px; height:22px; }
   .dock-btn span{
     font-family:'Baloo 2',sans-serif;
     font-size:10px;
     font-weight:700;
     color:var(--plum-soft);
+    white-space:nowrap;
   }
   .dock-btn:active{ transform:scale(0.9); }
-  @media (max-width:340px){
-    .dock{gap:6px;padding-left:7px;padding-right:7px}
-    .dock-btn{flex-basis:calc(25% - 6px);height:56px;border-radius:18px}
-    .dock-btn span{font-size:9px}
-  }
 
   .dock-btn.active{
     background:linear-gradient(160deg,#FFE9D6,#FFD9BC);
     box-shadow:0 4px 10px rgba(230,110,30,0.28) inset, 0 6px 14px rgba(150,120,180,0.15);
   }
-  .dock-btn.disabled{ opacity:.4; cursor:not-allowed; }
 
-  @media (max-width:360px){
-    .stage{ height:360px; }
-  }
-
-  /* ===== COPITO 2.0: monedas, pantallas, tienda, inventario y juegos ===== */
+  /* Monedas, Pantallas y Tienda */
   .wallet{
     display:flex;justify-content:center;align-items:center;gap:6px;
-    margin:0 20px 8px;padding:7px 12px;border-radius:14px;
+    margin:0 20px 6px;padding:6px 12px;border-radius:14px;
     background:linear-gradient(135deg,#FFF3C4,#FFE4A8);
-    font-family:'Baloo 2',sans-serif;font-weight:800;color:#7B5A20;
+    font-family:'Baloo 2',sans-serif;font-weight:800;color:#7B5A20;font-size:13px;
   }
   .screen{
-    position:absolute;inset:0;background:#FFFAF2;z-index:50;
-    padding:18px;overflow:auto;display:none;
+    position:absolute;inset:0;background:#FFFAF2;z-index:100;
+    padding:18px;overflow:auto;display:none;pointer-events:auto;
   }
-  .screen.open{display:block;animation:screenIn .22s ease-out}
+  .screen.open{display:flex;flex-direction:column;animation:screenIn .22s ease-out}
   @keyframes screenIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
   .screen-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-  .screen-head h2{font-family:'Baloo 2';margin:0;font-size:25px}
-  .close-screen{border:0;background:#EFE7F5;border-radius:14px;padding:8px 12px;font-weight:800;cursor:pointer}
-  .coins-big{font-weight:800;background:#FFF0B8;border-radius:12px;padding:6px 10px}
+  .screen-head h2{font-family:'Baloo 2';margin:0;font-size:22px}
+  .close-screen{
+    border:0;background:#EFE7F5;border-radius:14px;padding:8px 14px;
+    font-weight:800;font-size:16px;color:var(--plum);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease;
+  }
+  .close-screen:active{background:#E0D2EC}
+  .coins-big{font-weight:800;background:#FFF0B8;border-radius:12px;padding:6px 10px;margin-bottom:12px;display:inline-block}
   .shop-grid,.game-grid,.inventory-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .shop-card,.game-card,.inv-card{
     background:white;border:0;border-radius:18px;padding:12px;
     box-shadow:0 6px 16px rgba(100,70,120,.12);text-align:center;
   }
-  .shop-icon,.game-icon{font-size:38px}.shop-card h3,.game-card h3{margin:4px 0;font-size:15px}
+  .shop-icon,.game-icon{font-size:32px}.shop-card h3,.game-card h3{margin:4px 0;font-size:14px}
   .price{font-weight:800;color:#E56F22;margin:4px}
   .buy-btn,.play-btn,.use-btn{
     border:0;border-radius:12px;padding:8px 12px;background:#FF9EB5;color:white;
     font-weight:800;cursor:pointer;width:100%;
   }
   .buy-btn:disabled{opacity:.45;cursor:not-allowed}
-  .game-area{background:linear-gradient(160deg,#F7F0FF,#EAF8F4);border-radius:20px;min-height:300px;padding:14px;text-align:center}
-  .game-score{font-family:'Baloo 2';font-size:20px;font-weight:800}
+  .game-area{background:linear-gradient(160deg,#F7F0FF,#EAF8F4);border-radius:20px;min-height:280px;padding:14px;text-align:center}
+  .game-score{font-family:'Baloo 2';font-size:18px;font-weight:800}
   .game-target{
-    position:absolute;width:55px;height:55px;border:0;border-radius:50%;
-    font-size:30px;background:white;box-shadow:0 5px 14px #0002;cursor:pointer;
+    position:absolute;width:50px;height:50px;border:0;border-radius:50%;
+    font-size:26px;background:white;box-shadow:0 5px 14px #0002;cursor:pointer;
   }
-  .game-board{position:relative;height:230px;border-radius:16px;background:#D9F0C8;overflow:hidden;margin-top:10px}
+  .game-board{position:relative;height:210px;border-radius:16px;background:#D9F0C8;overflow:hidden;margin-top:10px}
   .memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
-  .memory-card{height:55px;border:0;border-radius:12px;background:#B79CF2;color:white;font-size:25px;cursor:pointer}
+  .memory-card{height:50px;border:0;border-radius:12px;background:#B79CF2;color:white;font-size:22px;cursor:pointer}
   .memory-card.revealed{background:white;color:#4A3F55}
-  .notice{padding:10px;border-radius:14px;background:#F4ECFA;font-size:13px;margin-bottom:10px}
+  .notice{padding:10px;border-radius:14px;background:#F4ECFA;font-size:12px;margin-bottom:10px}
   .empty{grid-column:1/-1;text-align:center;padding:30px;color:#8B7F99}
   .equipped{outline:3px solid #5FC9C0}
   .accessory-badge{
     position:absolute;z-index:8;font-size:28px;pointer-events:none;
   }
-  #accHat{top:70px;left:50%;transform:translateX(-50%)}
-  #accGlasses{top:105px;left:50%;transform:translateX(-50%)}
-  #accBow{top:148px;left:50%;transform:translateX(-50%)}
+  #accHat{top:60px;left:50%;transform:translateX(-50%)}
+  #accGlasses{top:95px;left:50%;transform:translateX(-50%)}
+  #accBow{top:138px;left:50%;transform:translateX(-50%)}
   .shop-tabs{display:flex;gap:7px;margin-bottom:12px}
-  .shop-tab{flex:1;border:0;padding:8px;border-radius:12px;background:#EFE7F5;font-weight:800;cursor:pointer}
+  .shop-tab{flex:1;border:0;padding:8px;border-radius:12px;background:#EFE7F5;font-weight:800;cursor:pointer;font-size:12px}
   .shop-tab.active{background:#FFD9BC}
 
-  .chat-screen{display:flex;flex-direction:column}
+  /* Interfaz de Chat */
+  .chat-screen{display:none;flex-direction:column;height:100%}
   .chat-status{font-size:11px;font-weight:800;color:#8B7F99}
-  .chat-messages{flex:1;min-height:300px;max-height:390px;overflow:auto;padding:8px 2px 14px;display:flex;flex-direction:column;gap:9px}
+  .chat-messages{flex:1;min-height:260px;max-height:340px;overflow:auto;padding:8px 2px 14px;display:flex;flex-direction:column;gap:9px}
   .chat-msg{max-width:84%;padding:9px 12px;border-radius:16px;font-size:13px;line-height:1.35;box-shadow:0 3px 9px rgba(80,50,100,.08);white-space:pre-wrap;word-break:break-word}
   .chat-msg.copito{align-self:flex-start;background:#F1E9FA;border-bottom-left-radius:5px}
   .chat-msg.user{align-self:flex-end;background:#FFD9E2;border-bottom-right-radius:5px}
@@ -482,7 +474,7 @@
   <div class="topbar">
     <div class="name-row">
       <h1 id="petName" contenteditable="true" spellcheck="false">Copito</h1>
-      <span class="hint">toca el nombre para editarlo</span>
+      <span class="hint">toca para editar</span>
     </div>
     <div class="stats">
       <div class="stat" title="Hambre">
@@ -504,7 +496,7 @@
     </div>
   </div>
 
-    <div class="wallet">🪙 <span id="coins">100</span> monedas</div>
+  <div class="wallet">🪙 <span id="coins">100</span> monedas</div>
 
   <div class="stage" id="stage">
     <div class="cloud c1"></div>
@@ -519,20 +511,14 @@
     <div class="bunny-wrap" id="bunnyWrap">
       <div id="bunny-wrap-inner" style="width:100%;height:100%;">
       <svg id="bunny" viewBox="0 0 240 260">
-
-        <!-- tail -->
         <ellipse cx="182" cy="196" rx="14" ry="14" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
-
-        <!-- body -->
         <g id="body-group">
           <ellipse cx="120" cy="196" rx="62" ry="52" fill="#FFFFFF" stroke="#EDE3F5" stroke-width="2"/>
           <ellipse cx="120" cy="210" rx="34" ry="24" fill="#FFF0F5" opacity="0.7"/>
 
-          <!-- paws -->
           <ellipse cx="86" cy="238" rx="16" ry="11" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
           <ellipse cx="154" cy="238" rx="16" ry="11" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
 
-          <!-- ears -->
           <g id="ear-left">
             <path d="M88 78 C68 30, 78 4, 92 4 C104 4, 106 34, 96 82 Z" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
             <path d="M90 70 C76 34, 82 16, 91 16 C99 16, 100 38, 94 74 Z" fill="#FFC2D1"/>
@@ -542,35 +528,28 @@
             <path d="M150 70 C164 34, 158 16, 149 16 C141 16, 140 38, 146 74 Z" fill="#FFC2D1"/>
           </g>
 
-          <!-- head -->
           <circle cx="120" cy="118" r="56" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
 
-          <!-- cheeks -->
           <ellipse cx="86" cy="134" rx="12" ry="7" fill="#FFC2D1" opacity="0.75"/>
           <ellipse cx="154" cy="134" rx="12" ry="7" fill="#FFC2D1" opacity="0.75"/>
 
-          <!-- eyes open -->
           <g id="eyes-open">
             <circle cx="100" cy="116" r="6.5" fill="#4A3F55"/>
             <circle cx="140" cy="116" r="6.5" fill="#4A3F55"/>
             <circle cx="102.5" cy="113.5" r="1.6" fill="#fff"/>
             <circle cx="142.5" cy="113.5" r="1.6" fill="#fff"/>
           </g>
-          <!-- eyes closed (sleep) -->
           <g class="zzz-eyes">
             <path d="M93 116 Q100 121 107 116" stroke="#4A3F55" stroke-width="2.4" fill="none" stroke-linecap="round"/>
             <path d="M133 116 Q140 121 147 116" stroke="#4A3F55" stroke-width="2.4" fill="none" stroke-linecap="round"/>
           </g>
 
-          <!-- nose -->
           <ellipse cx="120" cy="130" rx="5" ry="3.4" fill="#F2748F"/>
 
-          <!-- mouth -->
           <g id="mouth-group">
             <path id="mouth" d="M104 140 Q120 152 136 140" stroke="#4A3F55" stroke-width="2.6" fill="none" stroke-linecap="round"/>
           </g>
 
-          <!-- dirt spots -->
           <ellipse class="dirt" id="dirt1" cx="150" cy="150" rx="9" ry="6" fill="#B98A55" opacity="0"/>
           <ellipse class="dirt" id="dirt2" cx="95" cy="170" rx="10" ry="7" fill="#A97A48" opacity="0"/>
           <ellipse class="dirt" id="dirt3" cx="140" cy="200" rx="8" ry="6" fill="#B98A55" opacity="0"/>
@@ -578,7 +557,6 @@
       </svg>
       </div>
     </div>
-
 
     <div class="accessory-badge" id="accHat"></div>
     <div class="accessory-badge" id="accGlasses"></div>
@@ -593,6 +571,7 @@
     </div>
   </div>
 
+  <!-- Menú de 8 Botones en 2 filas -->
   <div class="dock">
     <button class="dock-btn" id="btnFeed" title="Alimentar">
       <svg viewBox="0 0 24 24"><path fill="#FF8A3D" d="M12 2c-1 3-4 4-4 8a4 4 0 0 0 8 0c0-4-3-5-4-8z"/><path fill="#5FA85B" d="M11 3c1-1.6 3-2 4-1.6-.4 1.2-1.6 2.6-3.2 3z"/></svg>
@@ -606,33 +585,27 @@
       <svg viewBox="0 0 24 24"><path fill="#F2748F" d="M12 21s-7-4.4-9.5-8.6C.7 8.8 2.4 5 6.1 5c2 0 3.3 1.1 3.9 2 .6-.9 1.9-2 3.9-2 3.7 0 5.4 3.8 3.6 7.4C19 16.6 12 21 12 21z"/></svg>
       <span>Cosquillas</span>
     </button>
-
-    <button class="dock-btn" id="btnChat" title="Hablar con Copito"><span style="font-size:26px">💬</span><span>Hablar</span></button>
-
-    <button class="dock-btn" id="btnPlay" title="Jugar">
-      <span style="font-size:26px">🎮</span><span>Jugar</span>
-    </button>
-    <button class="dock-btn" id="btnShop" title="Tienda">
-      <span style="font-size:26px">🛒</span><span>Tienda</span>
-    </button>
-    <button class="dock-btn" id="btnInventory" title="Accesorios">
-      <span style="font-size:26px">🎒</span><span>Accesorios</span>
-    </button>
-
+    <button class="dock-btn" id="btnChat" title="Hablar con Copito"><span style="font-size:20px">💬</span><span>Hablar</span></button>
+    
+    <button class="dock-btn" id="btnPlay" title="Jugar"><span style="font-size:20px">🎮</span><span>Jugar</span></button>
+    <button class="dock-btn" id="btnShop" title="Tienda"><span style="font-size:20px">🛒</span><span>Tienda</span></button>
+    <button class="dock-btn" id="btnInventory" title="Accesorios"><span style="font-size:20px">🎒</span><span>Accesorios</span></button>
     <button class="dock-btn" id="btnSleep" title="Dormir">
       <svg viewBox="0 0 24 24"><path fill="#9678E0" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
       <span>Dormir</span>
     </button>
   </div>
-  <!-- ===== PANTALLAS NUEVAS ===== -->
+
+  <!-- Modal del Chat -->
   <div class="screen chat-screen" id="chatScreen">
-    <div class="screen-head"><div><h2>💬 Habla con Copito</h2><div class="chat-status" id="chatStatus">IA desconectada</div></div><button class="close-screen" data-close="chatScreen">✕</button></div>
-    <div class="chat-messages" id="chatMessages"><div class="chat-msg copito">🐰 ¡Holaaa! Soy Copito. ¡Escríbeme algo! 😆</div></div>
+    <div class="screen-head"><div><h2>💬 Habla con Copito</h2><div class="chat-status" id="chatStatus">Conectado</div></div><button type="button" class="close-screen">✕</button></div>
+    <div class="chat-messages" id="chatMessages"><div class="chat-msg copito">🐰 ¡Holaaa! Soy Copito. ¡Háblame de lo que quieras! 😆</div></div>
     <form class="chat-compose" id="chatForm"><input class="chat-input" id="chatInput" maxlength="500" autocomplete="off" placeholder="Escríbele a Copito..."><button class="chat-send" id="chatSend" type="submit">➤</button></form>
   </div>
 
+  <!-- Modal de Tienda -->
   <div class="screen" id="shopScreen">
-    <div class="screen-head"><h2>🛒 Tienda</h2><button class="close-screen" data-close="shopScreen">✕</button></div>
+    <div class="screen-head"><h2>🛒 Tienda</h2><button type="button" class="close-screen">✕</button></div>
     <div class="coins-big">🪙 <span class="screenCoins">100</span></div>
     <div class="shop-tabs">
       <button class="shop-tab active" data-shop-tab="food">🍎 Comida</button>
@@ -642,18 +615,20 @@
     <div class="shop-grid" id="shopGrid"></div>
   </div>
 
+  <!-- Modal de Inventario -->
   <div class="screen" id="inventoryScreen">
-    <div class="screen-head"><h2>🎒 Mis cosas</h2><button class="close-screen" data-close="inventoryScreen">✕</button></div>
+    <div class="screen-head"><h2>🎒 Mis cosas</h2><button type="button" class="close-screen">✕</button></div>
     <div class="notice">Equipa tus accesorios para cambiar el aspecto de Copito.</div>
     <div class="inventory-grid" id="inventoryGrid"></div>
   </div>
 
+  <!-- Modal de Juegos -->
   <div class="screen" id="gameScreen">
-    <div class="screen-head"><h2>🎮 Zona de juegos</h2><button class="close-screen" data-close="gameScreen">✕</button></div>
+    <div class="screen-head"><h2>🎮 Zona de juegos</h2><button type="button" class="close-screen">✕</button></div>
     <div class="game-grid" id="gameMenu">
-      <div class="game-card"><div class="game-icon">🥕</div><h3>Atrapa zanahorias</h3><p>¡Atrapa 10 antes de que se acabe el tiempo!</p><button class="play-btn" data-game="carrot">Jugar</button></div>
-      <div class="game-card"><div class="game-icon">🧠</div><h3>Memoria</h3><p>Encuentra todas las parejas.</p><button class="play-btn" data-game="memory">Jugar</button></div>
-      <div class="game-card"><div class="game-icon">⭐</div><h3>Atrapa estrellas</h3><p>Consigue puntos durante 20 segundos.</p><button class="play-btn" data-game="stars">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">🥕</div><h3>Atrapa zanahorias</h3><p>¡Atrapa 10 rápido!</p><button class="play-btn" data-game="carrot">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">🧠</div><h3>Memoria</h3><p>Encuentra las parejas.</p><button class="play-btn" data-game="memory">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">⭐</div><h3>Atrapa estrellas</h3><p>Gana puntos en 20s.</p><button class="play-btn" data-game="stars">Jugar</button></div>
     </div>
     <div id="gamePlay" style="display:none">
       <div class="game-area" id="gameArea"></div>
@@ -676,11 +651,9 @@
   const bunnySvg = document.getElementById('bunny');
   const mouthGroup = document.getElementById('mouth-group');
   const mouthPath = document.getElementById('mouth');
-  const eyesGroup = document.getElementById('bunny');
   const earL = document.getElementById('ear-left');
   const earR = document.getElementById('ear-right');
   const tray = document.getElementById('tray');
-  const tub = document.getElementById('tub');
   const sleepOverlay = document.getElementById('sleepOverlay');
   const stageHint = document.getElementById('stageHint');
   const bubble = document.getElementById('bubble');
@@ -806,7 +779,7 @@
     }
   }
 
-  /* ---------- FEED ---------- */
+  /* Alimentación */
   const foodInfo = {
     carrot: { hunger: 22, hygiene: 0, emoji:'✨', label:'+22' },
     lettuce:{ hunger: 14, hygiene: 3, emoji:'✨', label:'+14' },
@@ -846,7 +819,7 @@
     });
   });
 
-  /* ---------- BATHE ---------- */
+  /* Baño */
   btnBathe.addEventListener('click', () => {
     if(isSleeping){ showHint(); return; }
     isBathing = !isBathing;
@@ -870,7 +843,7 @@
     }
   });
 
-  /* ---------- TICKLE ---------- */
+  /* Cosquillas */
   function doTickle(){
     if(isSleeping){ showHint(); return; }
     if(tickleCooldown) return;
@@ -890,12 +863,12 @@
   }
 
   btnTickle.addEventListener('click', doTickle);
-  bunnySvg.addEventListener('click', (e) => {
+  bunnySvg.addEventListener('click', () => {
     if(isBathing || isSleeping) return;
     doTickle();
   });
 
-  /* ---------- SLEEP ---------- */
+  /* Descanso */
   function toggleSleep(force){
     isSleeping = (typeof force === 'boolean') ? force : !isSleeping;
     stage.classList.toggle('sleeping', isSleeping);
@@ -912,17 +885,15 @@
   btnSleep.addEventListener('click', () => toggleSleep());
   sleepOverlay.addEventListener('click', () => toggleSleep(false));
 
-  let zzzTimer = null;
   function zzzLoop(){
     if(isSleeping){
       const pos = localPos(bunnyWrap);
       spawnEmoji(pos.x + 30, pos.y - 90, '💤');
     }
-    zzzTimer = setTimeout(zzzLoop, 1400);
+    setTimeout(zzzLoop, 1400);
   }
   zzzLoop();
 
-  /* ---------- name edit ---------- */
   petName.addEventListener('keydown', (e) => {
     if(e.key === 'Enter'){ e.preventDefault(); petName.blur(); }
   });
@@ -930,12 +901,10 @@
     if(!petName.textContent.trim()) petName.textContent = 'Copito';
   });
 
-  /* ---------- loops ---------- */
   setInterval(decayTick, 3500);
   setInterval(randomIdle, 4200);
 
-
-  /* ===== COPITO 2.0 ===== */
+  /* Guardado local y tienda */
   const SAVE_KEY = 'copito_save_v2';
   const coinsEl = document.getElementById('coins');
   const shopScreen = document.getElementById('shopScreen');
@@ -978,10 +947,8 @@
       const old = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
       if(old){
         Object.assign(save, old);
-        save.inventory ||= {};
-        save.equipped ||= {hat:null,glasses:null,bow:null};
-        save.home ||= [];
-        save.best ||= {carrot:0,memory:0,stars:0};
+        save.inventory = save.inventory || {};
+        save.equipped = save.equipped || {hat:null,glasses:null,bow:null};
       }
     }catch(e){}
     updateCoins(); renderAccessories();
@@ -1005,14 +972,34 @@
   }
 
   function openScreen(el){
-    document.querySelectorAll('.screen').forEach(s=>s.classList.remove('open'));
+    closeAllScreens();
     el.classList.add('open');
     updateCoins();
   }
+
+  function closeAllScreens(){
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('open'));
+  }
+
+  /* Cierre de modales */
+  closeAllScreens();
+
   document.getElementById('btnShop').addEventListener('click',()=>{renderShop('food');openScreen(shopScreen)});
   document.getElementById('btnInventory').addEventListener('click',()=>{renderInventory();openScreen(inventoryScreen)});
   document.getElementById('btnPlay').addEventListener('click',()=>{gameMenu.style.display='grid';gamePlay.style.display='none';openScreen(gameScreen)});
-  document.querySelectorAll('.close-screen').forEach(b=>b.addEventListener('click',()=>b.closest('.screen').classList.remove('open')));
+  
+  document.addEventListener('click', (e) => {
+    const closeBtn = e.target.closest('.close-screen');
+    if(closeBtn){
+      e.preventDefault();
+      e.stopPropagation();
+      closeAllScreens();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape') closeAllScreens();
+  });
 
   document.querySelectorAll('[data-shop-tab]').forEach(b=>{
     b.addEventListener('click',()=>{
@@ -1058,7 +1045,7 @@
           persist(); renderInventory(); renderAccessories();
         });
       }
-      inventoryGrid.appendChild(card); any=true;
+      inventoryGrid.appendChild(card);
     });
     if(!any) inventoryGrid.innerHTML='<div class="empty">Todavía no tienes accesorios. ¡Ve a la tienda! 🛒</div>';
   }
@@ -1070,26 +1057,16 @@
     document.getElementById('accBow').textContent=bow==='bow'?'🎀':'';
   }
 
-  /* Comprar comida = también aumenta el inventario; la bandeja usa comida básica */
-  const oldFoodInfo = {...foodInfo};
-  function usePurchasedFood(id, item){
-    if(!(save.inventory[id]>0)) return false;
-    save.inventory[id]--;
-    state.hunger=clamp(state.hunger+item.hunger);
-    persist(); updateUI();
-    showBubble(`¡${item.name}! 😋`,1200); return true;
-  }
-
-  /* Minijuego: atrapa zanahorias */
+  /* Minijuegos */
   function startCarrotGame(){
     gameMenu.style.display='none'; gamePlay.style.display='block';
-    let score=0, left=10, time=20, timer=null;
+    let score=0, time=20, timer=null;
     gameArea.innerHTML=`<div class="game-score">🥕 ${score}/10 · ⏱️ ${time}s</div><div class="game-board" id="board"></div>
-      <button class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
+      <button type="button" class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
     const board=document.getElementById('board'), scoreEl=gameArea.querySelector('.game-score');
     const target=document.createElement('button'); target.className='game-target'; target.textContent='🥕'; board.appendChild(target);
     function move(){
-      target.style.left=Math.random()*80+'%'; target.style.top=Math.random()*70+'%';
+      target.style.left=Math.random()*75+'%'; target.style.top=Math.random()*65+'%';
     }
     target.onclick=()=>{
       score++; move(); scoreEl.textContent=`🥕 ${score}/10 · ⏱️ ${time}s`;
@@ -1100,34 +1077,33 @@
     document.getElementById('stopGame').onclick=()=>{clearInterval(timer);gameMenu.style.display='grid';gamePlay.style.display='none'};
     function finish(win){
       clearInterval(timer);
-      const reward=score*4+(win?25:0); save.best.carrot=Math.max(save.best.carrot,score); earnCoins(reward);
-      gameArea.innerHTML=`<div style="font-size:60px">🐰</div><h2>${win?'¡GANASTE! 🎉':'¡Se acabó el tiempo!'}</h2>
+      const reward=score*4+(win?25:0); earnCoins(reward);
+      gameArea.innerHTML=`<div style="font-size:50px">🐰</div><h2>${win?'¡GANASTE! 🎉':'¡Se acabó el tiempo!'}</h2>
       <p>Conseguiste ${score} zanahorias.</p><h2>🪙 +${reward}</h2><button class="play-btn" id="again">Jugar otra vez</button>`;
       document.getElementById('again').onclick=startCarrotGame;
     }
   }
 
-  /* Minijuego: memoria */
   function startMemoryGame(){
     gameMenu.style.display='none';gamePlay.style.display='block';
     const symbols=['🥕','🍎','⭐','🍪','🥕','🍎','⭐','🍪'];
     symbols.sort(()=>Math.random()-.5);
     let first=null, lock=false, matches=0, moves=0;
-    gameArea.innerHTML=`<div class="game-score">🧠 Encuentra las parejas · Movimientos: 0</div><div class="memory-grid"></div>
-      <button class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
+    gameArea.innerHTML=`<div class="game-score">🧠 Parejas · Movs: 0</div><div class="memory-grid"></div>
+      <button type="button" class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
     const grid=gameArea.querySelector('.memory-grid'), scoreEl=gameArea.querySelector('.game-score');
-    symbols.forEach((s,i)=>{
+    symbols.forEach((s)=>{
       const b=document.createElement('button');b.className='memory-card';b.textContent='❓';b.dataset.symbol=s;
       b.onclick=()=>{
         if(lock||b.classList.contains('revealed'))return;
         b.classList.add('revealed');b.textContent=s;
         if(!first){first=b;return}
-        moves++;scoreEl.textContent=`🧠 Encuentra las parejas · Movimientos: ${moves}`;
+        moves++;scoreEl.textContent=`🧠 Parejas · Movs: ${moves}`;
         if(first.dataset.symbol===b.dataset.symbol){
           matches++;first=null;
           if(matches===4){
-            const reward=Math.max(25,70-moves*5);save.best.memory=Math.max(save.best.memory,Math.max(0,100-moves*5));earnCoins(reward);
-            setTimeout(()=>gameArea.innerHTML=`<div style="font-size:60px">🏆</div><h2>¡Memoria completada!</h2><h2>🪙 +${reward}</h2><button class="play-btn" id="again">Jugar otra vez</button>`,400);
+            const reward=Math.max(25,70-moves*5);earnCoins(reward);
+            setTimeout(()=>gameArea.innerHTML=`<div style="font-size:50px">🏆</div><h2>¡Memoria completada!</h2><h2>🪙 +${reward}</h2><button class="play-btn" id="again">Jugar otra vez</button>`,400);
             setTimeout(()=>document.getElementById('again')?.addEventListener('click',startMemoryGame),450);
           }
         }else{
@@ -1139,60 +1115,82 @@
     document.getElementById('stopGame').onclick=()=>{gameMenu.style.display='grid';gamePlay.style.display='none'};
   }
 
-  /* Minijuego: estrellas */
   function startStarsGame(){
     gameMenu.style.display='none';gamePlay.style.display='block';
     let score=0,time=20,timer=null;
-    gameArea.innerHTML=`<div class="game-score">⭐ ${score} puntos · ⏱️ ${time}s</div><div class="game-board" id="board"></div>
-      <button class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
+    gameArea.innerHTML=`<div class="game-score">⭐ ${score} pts · ⏱️ ${time}s</div><div class="game-board" id="board"></div>
+      <button type="button" class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
     const board=document.getElementById('board'), scoreEl=gameArea.querySelector('.game-score');
     const target=document.createElement('button');target.className='game-target';target.textContent='⭐';board.appendChild(target);
-    function move(){target.style.left=Math.random()*80+'%';target.style.top=Math.random()*70+'%'}
-    target.onclick=()=>{score+=5;move();scoreEl.textContent=`⭐ ${score} puntos · ⏱️ ${time}s`};
+    function move(){target.style.left=Math.random()*75+'%';target.style.top=Math.random()*65+'%'}
+    target.onclick=()=>{score+=5;move();scoreEl.textContent=`⭐ ${score} pts · ⏱️ ${time}s`};
     move();
-    timer=setInterval(()=>{time--;scoreEl.textContent=`⭐ ${score} puntos · ⏱️ ${time}s`;if(time<=0){
-      clearInterval(timer);const reward=Math.floor(score/5)*3;save.best.stars=Math.max(save.best.stars,score);earnCoins(reward);
-      gameArea.innerHTML=`<div style="font-size:60px">⭐</div><h2>¡Tiempo!</h2><p>Puntos: ${score}</p><h2>🪙 +${reward}</h2><button class="play-btn" id="again">Jugar otra vez</button>`;
+    timer=setInterval(()=>{time--;scoreEl.textContent=`⭐ ${score} pts · ⏱️ ${time}s`;if(time<=0){
+      clearInterval(timer);const reward=Math.floor(score/5)*3;earnCoins(reward);
+      gameArea.innerHTML=`<div style="font-size:50px">⭐</div><h2>¡Tiempo!</h2><p>Puntos: ${score}</p><h2>🪙 +${reward}</h2><button class="play-btn" id="again">Jugar otra vez</button>`;
       document.getElementById('again').onclick=startStarsGame;
     }},1000);
-    document.getElementById('stopGame').onclick=()=>{clearInterval(timer);gameMenu.style.display='grid';gamePlay.style.display='none'};
+    document.getElementById('stopGame').onclick=()=>{gameMenu.style.display='grid';gamePlay.style.display='none'};
   }
 
   document.querySelectorAll('[data-game]').forEach(b=>{
     b.addEventListener('click',()=>({carrot:startCarrotGame,memory:startMemoryGame,stars:startStarsGame}[b.dataset.game])());
   });
 
-  /* Recompensa diaria: una vez cada 24 h */
-  function dailyReward(){
-    const last=Number(localStorage.getItem('copito_daily')||0);
-    if(Date.now()-last>=86400000){
-      localStorage.setItem('copito_daily',String(Date.now()));
-      save.coins+=50;persist();setTimeout(()=>showBubble('¡Regalo diario! 🎁 +50 monedas',2200),1200);
-    }
-  }
+  loadSave();
 
-  /* Guardado automático de estado de mascota */
-  const originalDecayTick=decayTick;
-  decayTick=function(){originalDecayTick();persist()};
-  loadSave(); dailyReward();
-
-  const CHAT_API_URL = window.COPITO_AI_URL || '/api/chat';
+  /* Chat */
   const chatScreen=document.getElementById('chatScreen'), chatMessages=document.getElementById('chatMessages');
   const chatForm=document.getElementById('chatForm'), chatInput=document.getElementById('chatInput');
   const chatSend=document.getElementById('chatSend'), chatStatus=document.getElementById('chatStatus');
+  
   document.getElementById('btnChat').addEventListener('click',()=>{openScreen(chatScreen);chatInput.focus()});
-  function addChat(role,msg,extra=''){const d=document.createElement('div');d.className=`chat-msg ${role} ${extra}`;d.textContent=msg;chatMessages.appendChild(d);chatMessages.scrollTop=chatMessages.scrollHeight;return d}
-  function petContext(){return {nombre:petName.textContent.trim()||'Copito',hambre:Math.round(state.hunger),higiene:Math.round(state.hygiene),diversion:Math.round(state.fun),energia:Math.round(state.energy),monedas:save.coins,accesorios:Object.values(save.equipped).filter(Boolean)}}
-  chatForm.addEventListener('submit',async e=>{
-    e.preventDefault();const message=chatInput.value.trim();if(!message||chatSend.disabled)return;
-    addChat('user',message);chatInput.value='';chatSend.disabled=true;chatStatus.textContent='Copito está pensando...';
-    const typing=addChat('copito','🐰 Estoy pensando...','typing');
-    try{
-      const r=await fetch(CHAT_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,pet:petContext()})});
-      const data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo conectar con la IA.');
-      typing.remove();addChat('copito','🐰 '+data.reply);chatStatus.textContent='IA conectada';
-    }catch(err){typing.remove();addChat('copito','🥺 No pude conectar mi cerebro de IA todavía.\n\n'+err.message);chatStatus.textContent='Revisa la conexión de IA'}
-    finally{chatSend.disabled=false;chatInput.focus()}
+  
+  function addChat(role,msg,extra=''){
+    const d=document.createElement('div');d.className=`chat-msg ${role} ${extra}`;d.textContent=msg;
+    chatMessages.appendChild(d);chatMessages.scrollTop=chatMessages.scrollHeight;return d;
+  }
+
+  function generateLocalResponse(text) {
+    const q = text.toLowerCase();
+    const name = petName.textContent.trim() || 'Copito';
+    
+    if (q.includes('hola') || q.includes('buenas')) return `¡Hola, hola! 🐾 Soy ${name}. ¿Quieres jugar conmigo?`;
+    if (q.includes('como estas') || q.includes('cómo estás')) return `¡Me siento con ${Math.round(state.energy)}% de energía y ganas de comer zanahorias! 🥕`;
+    if (q.includes('comida') || q.includes('hambre')) return state.hunger < 50 ? '¡Tengo mucha hambre! Dame algo de comer por favor 🥺' : '¡Estoy lleno y feliz! 😋';
+    if (q.includes('quien eres') || q.includes('quién eres')) return `¡Soy ${name}! Tu conejo virtual favorito 🐰❤️`;
+    if (q.includes('monedas') || q.includes('dinero')) return `¡Tenemos 🪙 ${save.coins} monedas! Podríamos ir a la tienda 🛒`;
+    
+    const randomReplies = [
+      '¡Eso suena genial! 🐰✨',
+      '¡Salteemos de alegría! 🐾',
+      '¿Me compras una zanahoria? 🥕🥺',
+      '¡Me encanta platicar contigo!',
+      '¡Avisame si quieres jugar a atrapar estrellas! ⭐'
+    ];
+    return randomReplies[Math.floor(Math.random() * randomReplies.length)];
+  }
+
+  chatForm.addEventListener('submit', async e => {
+    e.preventDefault();
+    const message = chatInput.value.trim();
+    if(!message || chatSend.disabled) return;
+
+    addChat('user', message);
+    chatInput.value = '';
+    chatSend.disabled = true;
+    chatStatus.textContent = 'Copito pensando...';
+
+    const typing = addChat('copito', '🐰 Pensando...', 'typing');
+
+    setTimeout(() => {
+      typing.remove();
+      const reply = generateLocalResponse(message);
+      addChat('copito', '🐰 ' + reply);
+      chatStatus.textContent = 'En línea';
+      chatSend.disabled = false;
+      chatInput.focus();
+    }, 600);
   });
 
   updateUI();
