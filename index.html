@@ -362,17 +362,18 @@
 
   /* ---------- dock ---------- */
   .dock{
-    display:flex;
-    justify-content:space-around;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    justify-content:center;
     align-items:center;
-    padding:16px 18px 20px;
+    padding:14px 12px 18px;
     gap:8px;
   }
 
   .dock-btn{
     background:var(--white);
     border:none;
-    width:64px; height:64px;
+    width:100%; height:60px;
     border-radius:22px;
     display:flex; flex-direction:column; align-items:center; justify-content:center;
     gap:2px;
@@ -450,6 +451,17 @@
   .shop-tab{flex:1;border:0;padding:8px;border-radius:12px;background:#EFE7F5;font-weight:800;cursor:pointer}
   .shop-tab.active{background:#FFD9BC}
 
+  .chat-screen{display:flex;flex-direction:column}
+  .chat-status{font-size:11px;font-weight:800;color:#8B7F99}
+  .chat-messages{flex:1;min-height:300px;max-height:390px;overflow:auto;padding:8px 2px 14px;display:flex;flex-direction:column;gap:9px}
+  .chat-msg{max-width:84%;padding:9px 12px;border-radius:16px;font-size:13px;line-height:1.35;box-shadow:0 3px 9px rgba(80,50,100,.08);white-space:pre-wrap;word-break:break-word}
+  .chat-msg.copito{align-self:flex-start;background:#F1E9FA;border-bottom-left-radius:5px}
+  .chat-msg.user{align-self:flex-end;background:#FFD9E2;border-bottom-right-radius:5px}
+  .chat-compose{display:flex;gap:7px;padding-top:8px;border-top:1px solid #EEE4F3}
+  .chat-input{flex:1;border:2px solid #EFE7F5;border-radius:16px;padding:10px 12px;font-family:'Nunito';font-size:13px;outline:none;background:white}
+  .chat-input:focus{border-color:#FF9EB5}
+  .chat-send{width:46px;border:0;border-radius:15px;background:#FF9EB5;color:white;font-size:20px;cursor:pointer}
+  .chat-send:disabled{opacity:.5;cursor:not-allowed}
 </style>
 </head>
 <body>
@@ -584,6 +596,8 @@
       <span>Cosquillas</span>
     </button>
 
+    <button class="dock-btn" id="btnChat" title="Hablar con Copito"><span style="font-size:26px">💬</span><span>Hablar</span></button>
+
     <button class="dock-btn" id="btnPlay" title="Jugar">
       <span style="font-size:26px">🎮</span><span>Jugar</span>
     </button>
@@ -600,6 +614,12 @@
     </button>
   </div>
   <!-- ===== PANTALLAS NUEVAS ===== -->
+  <div class="screen chat-screen" id="chatScreen">
+    <div class="screen-head"><div><h2>💬 Habla con Copito</h2><div class="chat-status" id="chatStatus">IA desconectada</div></div><button class="close-screen" data-close="chatScreen">✕</button></div>
+    <div class="chat-messages" id="chatMessages"><div class="chat-msg copito">🐰 ¡Holaaa! Soy Copito. ¡Escríbeme algo! 😆</div></div>
+    <form class="chat-compose" id="chatForm"><input class="chat-input" id="chatInput" maxlength="500" autocomplete="off" placeholder="Escríbele a Copito..."><button class="chat-send" id="chatSend" type="submit">➤</button></form>
+  </div>
+
   <div class="screen" id="shopScreen">
     <div class="screen-head"><h2>🛒 Tienda</h2><button class="close-screen" data-close="shopScreen">✕</button></div>
     <div class="coins-big">🪙 <span class="screenCoins">100</span></div>
@@ -1144,6 +1164,25 @@
   const originalDecayTick=decayTick;
   decayTick=function(){originalDecayTick();persist()};
   loadSave(); dailyReward();
+
+  const CHAT_API_URL = window.COPITO_AI_URL || '/api/chat';
+  const chatScreen=document.getElementById('chatScreen'), chatMessages=document.getElementById('chatMessages');
+  const chatForm=document.getElementById('chatForm'), chatInput=document.getElementById('chatInput');
+  const chatSend=document.getElementById('chatSend'), chatStatus=document.getElementById('chatStatus');
+  document.getElementById('btnChat').addEventListener('click',()=>{openScreen(chatScreen);chatInput.focus()});
+  function addChat(role,msg,extra=''){const d=document.createElement('div');d.className=`chat-msg ${role} ${extra}`;d.textContent=msg;chatMessages.appendChild(d);chatMessages.scrollTop=chatMessages.scrollHeight;return d}
+  function petContext(){return {nombre:petName.textContent.trim()||'Copito',hambre:Math.round(state.hunger),higiene:Math.round(state.hygiene),diversion:Math.round(state.fun),energia:Math.round(state.energy),monedas:save.coins,accesorios:Object.values(save.equipped).filter(Boolean)}}
+  chatForm.addEventListener('submit',async e=>{
+    e.preventDefault();const message=chatInput.value.trim();if(!message||chatSend.disabled)return;
+    addChat('user',message);chatInput.value='';chatSend.disabled=true;chatStatus.textContent='Copito está pensando...';
+    const typing=addChat('copito','🐰 Estoy pensando...','typing');
+    try{
+      const r=await fetch(CHAT_API_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message,pet:petContext()})});
+      const data=await r.json();if(!r.ok)throw Error(data.error||'No se pudo conectar con la IA.');
+      typing.remove();addChat('copito','🐰 '+data.reply);chatStatus.textContent='IA conectada';
+    }catch(err){typing.remove();addChat('copito','🥺 No pude conectar mi cerebro de IA todavía.\n\n'+err.message);chatStatus.textContent='Revisa la conexión de IA'}
+    finally{chatSend.disabled=false;chatInput.focus()}
+  });
 
   updateUI();
   setTimeout(() => showBubble('¡Hola! Soy tu conejito 🐰', 2200), 500);
