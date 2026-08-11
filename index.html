@@ -56,9 +56,7 @@
   }
 
   /* Header y Estadísticas */
-  .topbar{
-    padding:18px 20px 10px;
-  }
+  .topbar{ padding:18px 20px 10px; }
 
   .name-row{
     display:flex;
@@ -93,12 +91,7 @@
     gap:8px 14px;
   }
 
-  .stat{
-    display:flex;
-    align-items:center;
-    gap:6px;
-  }
-
+  .stat{ display:flex; align-items:center; gap:6px; }
   .stat .icon{ width:18px; height:18px; flex:none; }
 
   .bar-track{
@@ -121,7 +114,7 @@
   .fill-fun{ background:linear-gradient(90deg,var(--pink-dark),var(--pink)); }
   .fill-energy{ background:linear-gradient(90deg,var(--purple-dark),var(--purple)); }
 
-  /* Escenario del personaje */
+  /* Escenario del personaje con Temas Dinámicos */
   .stage{
     position:relative;
     height:340px;
@@ -130,21 +123,30 @@
     overflow:hidden;
     background:linear-gradient(180deg,var(--sky-top) 0%, var(--sky-bottom) 65%);
     cursor:default;
+    transition:background 0.5s ease;
   }
 
-  .cloud{
-    position:absolute;
-    background:#fff;
-    border-radius:50px;
-    opacity:.8;
-    filter:blur(0.5px);
+  /* Temas de Fondo */
+  .stage.bg-night {
+    background: linear-gradient(180deg, #0d1b2a 0%, #1b263b 70%);
   }
-  .cloud::before, .cloud::after{
-    content:'';
-    position:absolute;
-    background:#fff;
-    border-radius:50%;
+  .stage.bg-night .ground { background: #1e3a29; }
+  .stage.bg-night .ground::before { background: #14281d; }
+
+  .stage.bg-forest {
+    background: linear-gradient(180deg, #134e5e 0%, #71b280 70%);
   }
+  .stage.bg-forest .ground { background: #386641; }
+  .stage.bg-forest .ground::before { background: #2a4830; }
+
+  .stage.bg-sunset {
+    background: linear-gradient(180deg, #ff7e5f 0%, #feb47b 70%);
+  }
+  .stage.bg-sunset .ground { background: #d4a373; }
+  .stage.bg-sunset .ground::before { background: #bc8a5f; }
+
+  .cloud{ position:absolute; background:#fff; border-radius:50px; opacity:.8; filter:blur(0.5px); }
+  .cloud::before, .cloud::after{ content:''; position:absolute; background:#fff; border-radius:50%; }
   .c1{ width:60px;height:22px; top:26px; left:20px; }
   .c1::before{ width:30px;height:30px; top:-14px; left:8px; }
   .c1::after{ width:24px;height:24px; top:-10px; left:30px; }
@@ -159,23 +161,25 @@
     background:var(--ground);
     border-top-left-radius:60% 24px;
     border-top-right-radius:60% 24px;
+    transition:background 0.5s ease;
   }
   .ground::before{
-    content:'';
-    position:absolute;
-    top:10px; left:0; right:0; height:14px;
-    background:var(--ground-dark);
-    border-top-left-radius:60% 24px;
-    border-top-right-radius:60% 24px;
-    opacity:.55;
+    content:''; position:absolute; top:10px; left:0; right:0; height:14px;
+    background:var(--ground-dark); border-top-left-radius:60% 24px; border-top-right-radius:60% 24px;
+    opacity:.55; transition:background 0.5s ease;
   }
+
+  /* Elementos de Decoración de Casa */
+  .home-decor{ position:absolute; z-index:4; font-size:32px; pointer-events:none; }
+  #decorBed{ bottom:38px; left:20px; font-size:48px; display:none; }
+  #decorPlant{ bottom:52px; right:22px; font-size:36px; display:none; }
+  #decorLamp{ top:15px; right:28px; font-size:32px; display:none; }
+  #decorBall{ bottom:30px; left:135px; font-size:26px; display:none; }
 
   .bunny-wrap{
     position:absolute;
-    bottom:64px;
-    left:50%;
-    width:190px;
-    height:205px;
+    bottom:64px; left:50%;
+    width:190px; height:205px;
     transform:translateX(-50%);
     transform-origin:bottom center;
     z-index:5;
@@ -184,21 +188,14 @@
   #bunny{ width:100%; height:100%; overflow:visible; }
 
   #body-group{ transform-origin:120px 200px; animation:breathe 3.2s ease-in-out infinite; }
-  @keyframes breathe{
-    0%,100%{ transform:scale(1); }
-    50%{ transform:scale(1.025,0.975); }
-  }
+  @keyframes breathe{ 0%,100%{ transform:scale(1); } 50%{ transform:scale(1.025,0.975); } }
 
   #ear-left{ transform-origin:88px 78px; }
   #ear-right{ transform-origin:152px 78px; }
   .ear-flop-l{ animation:earFlopL .9s ease-in-out; }
   .ear-flop-r{ animation:earFlopR .9s ease-in-out; }
-  @keyframes earFlopL{
-    0%{transform:rotate(0deg);} 30%{transform:rotate(-16deg);} 60%{transform:rotate(6deg);} 100%{transform:rotate(0deg);}
-  }
-  @keyframes earFlopR{
-    0%{transform:rotate(0deg);} 30%{transform:rotate(16deg);} 60%{transform:rotate(-6deg);} 100%{transform:rotate(0deg);}
-  }
+  @keyframes earFlopL{ 0%{transform:rotate(0deg);} 30%{transform:rotate(-16deg);} 60%{transform:rotate(6deg);} 100%{transform:rotate(0deg);} }
+  @keyframes earFlopR{ 0%{transform:rotate(0deg);} 30%{transform:rotate(16deg);} 60%{transform:rotate(-6deg);} 100%{transform:rotate(0deg);} }
 
   #eyes-open{ transform-origin:center; }
   .blinking #eyes-open{ animation:blink .16s ease-in-out; }
@@ -206,18 +203,11 @@
 
   #mouth-group{ transform-origin:120px 130px; }
   .eating #mouth-group{ animation:chew .9s ease-in-out 2; }
-  @keyframes chew{
-    0%,100%{ transform:scaleY(1); }
-    50%{ transform:scaleY(0.4) translateY(4px); }
-  }
+  @keyframes chew{ 0%,100%{ transform:scaleY(1); } 50%{ transform:scaleY(0.4) translateY(4px); } }
 
   #bunny-wrap-inner{ transform-origin:120px 216px; }
   .giggling #bunny-wrap-inner{ animation:giggle .6s ease-in-out; }
-  @keyframes giggle{
-    0%,100%{ transform:rotate(0deg) translateY(0); }
-    25%{ transform:rotate(-5deg) translateY(-6px); }
-    75%{ transform:rotate(5deg) translateY(-6px); }
-  }
+  @keyframes giggle{ 0%,100%{ transform:rotate(0deg) translateY(0); } 25%{ transform:rotate(-5deg) translateY(-6px); } 75%{ transform:rotate(5deg) translateY(-6px); } }
 
   .dirt{ opacity:0; transition:opacity .4s ease; }
   .dirt.show{ opacity:1; }
@@ -226,55 +216,44 @@
   .sleepy #eyes-open{ display:none; }
   .sleepy .zzz-eyes{ display:block; }
 
+  /* Gafas dibujadas en SVG */
+  #svgGlasses{ display:none; }
+  .has-glasses #svgGlasses{ display:block; }
+
+  /* Capas de Ropa SVG */
+  .cloth-layer { display: none; }
+  .has-cloth-tshirt #clothTshirt { display: block; }
+  .has-cloth-hoodie #clothHoodie { display: block; }
+  .has-cloth-suit #clothSuit { display: block; }
+
   /* Globo de diálogo */
   .bubble{
-    position:absolute;
-    top:14px; left:50%;
+    position:absolute; top:14px; left:50%;
     transform:translateX(-50%) scale(.8);
-    background:#fff;
-    border-radius:14px;
-    padding:6px 12px;
-    font-family:'Baloo 2',sans-serif;
-    font-size:13px;
-    font-weight:600;
-    color:var(--plum);
-    box-shadow:0 6px 16px rgba(0,0,0,0.12);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .3s ease, transform .3s ease;
-    white-space:nowrap;
-    z-index:20;
+    background:#fff; border-radius:14px; padding:6px 12px;
+    font-family:'Baloo 2',sans-serif; font-size:13px; font-weight:600; color:var(--plum);
+    box-shadow:0 6px 16px rgba(0,0,0,0.12); opacity:0; pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease; white-space:nowrap; z-index:20;
   }
   .bubble.show{ opacity:1; transform:translateX(-50%) scale(1); }
   .bubble::after{
-    content:'';
-    position:absolute; bottom:-6px; left:50%;
-    transform:translateX(-50%);
-    border-width:6px 6px 0 6px;
-    border-style:solid;
-    border-color:#fff transparent transparent transparent;
+    content:''; position:absolute; bottom:-6px; left:50%; transform:translateX(-50%);
+    border-width:6px 6px 0 6px; border-style:solid; border-color:#fff transparent transparent transparent;
   }
 
   /* Bañera */
   .tub{
-    position:absolute;
-    bottom:50px; left:50%;
-    width:200px; height:65px;
+    position:absolute; bottom:50px; left:50%; width:200px; height:65px;
     transform:translateX(-50%) scale(0.9);
     background:linear-gradient(180deg,#BFE8F5,#8FD3EA);
     border-radius:0 0 50px 50px / 0 0 40px 40px;
     box-shadow:inset 0 -6px 10px rgba(0,80,110,0.25);
-    opacity:0;
-    transition:opacity .35s ease, transform .35s ease;
-    pointer-events:none;
-    z-index:2;
+    opacity:0; transition:opacity .35s ease, transform .35s ease;
+    pointer-events:none; z-index:2;
   }
   .tub::before{
-    content:'';
-    position:absolute; top:-8px; left:-10px; right:-10px; height:16px;
-    background:#DCEFF7;
-    border-radius:50%;
-    box-shadow:0 2px 4px rgba(0,0,0,0.08);
+    content:''; position:absolute; top:-8px; left:-10px; right:-10px; height:16px;
+    background:#DCEFF7; border-radius:50%; box-shadow:0 2px 4px rgba(0,0,0,0.08);
   }
   .bathing .tub{ opacity:1; transform:translateX(-50%) scale(1); }
 
@@ -282,120 +261,71 @@
   .sleep-overlay{
     position:absolute; inset:0;
     background:radial-gradient(circle at 75% 20%, rgba(255,255,255,0.15), transparent 40%), linear-gradient(180deg,#2b2354ee,#4a3c78dd 70%, #6b5a9bcc);
-    opacity:0;
-    pointer-events:none;
-    transition:opacity .5s ease;
-    z-index:15;
-    display:flex;
-    align-items:flex-start;
-    justify-content:flex-end;
-    padding:18px;
+    opacity:0; pointer-events:none; transition:opacity .5s ease; z-index:15;
+    display:flex; align-items:flex-start; justify-content:flex-end; padding:18px;
   }
   .sleeping .sleep-overlay{ opacity:1; pointer-events:auto; cursor:pointer; }
   .moon{
-    width:44px;height:44px;border-radius:50%;
-    background:#FFE9A8;
+    width:44px;height:44px;border-radius:50%; background:#FFE9A8;
     box-shadow:-12px 0 0 0 #2b2354 inset, 0 0 20px 2px #FFE9A888;
   }
 
   .stage-hint{
-    position:absolute;
-    bottom:8px; left:50%; transform:translateX(-50%);
-    font-size:11px; font-weight:700; color:#ffffffcc;
-    background:#00000030; padding:4px 10px; border-radius:20px;
-    opacity:0; transition:opacity .3s ease; pointer-events:none; z-index:16;
+    position:absolute; bottom:8px; left:50%; transform:translateX(-50%);
+    font-size:11px; font-weight:700; color:#ffffffcc; background:#00000030;
+    padding:4px 10px; border-radius:20px; opacity:0; transition:opacity .3s ease; pointer-events:none; z-index:16;
   }
   .stage-hint.show{ opacity:1; }
 
-  /* Efectos y partículas */
-  .particle{
-    position:absolute;
-    pointer-events:none;
-    font-size:20px;
-    z-index:30;
-    animation:floatUp 1s ease-out forwards;
-  }
+  /* Partículas y Flotantes */
+  .particle{ position:absolute; pointer-events:none; font-size:20px; z-index:30; animation:floatUp 1s ease-out forwards; }
   @keyframes floatUp{
     0%{ opacity:1; transform:translate(-50%,-50%) scale(0.6); }
     20%{ opacity:1; transform:translate(-50%,-90%) scale(1.1); }
     100%{ opacity:0; transform:translate(-50%,-170%) scale(1); }
   }
+  .float-text{ position:absolute; font-family:'Baloo 2',sans-serif; font-weight:700; font-size:15px; z-index:30; pointer-events:none; animation:floatUp 1s ease-out forwards; }
 
-  .float-text{
-    position:absolute;
-    font-family:'Baloo 2',sans-serif;
-    font-weight:700;
-    font-size:15px;
-    z-index:30;
-    pointer-events:none;
-    animation:floatUp 1s ease-out forwards;
-  }
-
-  /* Menú flotante de comida */
+  /* Menú Flotante de Comida */
   .tray{
-    position:absolute;
-    left:0; right:0; bottom:0;
-    display:flex;
-    justify-content:center;
-    gap:14px;
-    padding:14px 10px 16px;
+    position:absolute; left:0; right:0; bottom:0;
+    display:flex; justify-content:center; gap:10px; padding:12px 10px;
     background:linear-gradient(180deg, transparent, #ffffffee 40%);
-    transform:translateY(110%);
-    transition:transform .3s cubic-bezier(.2,.9,.3,1.2);
-    z-index:25;
+    transform:translateY(110%); transition:transform .3s cubic-bezier(.2,.9,.3,1.2); z-index:25;
+    max-width:100%; overflow-x:auto;
   }
   .bathing-mode-active .tray, .sleeping .tray{ pointer-events:none; }
   .tray.show{ transform:translateY(0); }
 
   .food-btn{
-    width:56px; height:56px;
-    border-radius:18px;
-    background:var(--white);
-    border:none;
-    box-shadow:0 8px 16px rgba(120,90,60,0.18);
-    display:flex; align-items:center; justify-content:center;
-    cursor:pointer;
-    font-size:26px;
-    transition:transform .15s ease;
+    width:58px; height:58px; border-radius:18px; background:var(--white); border:none;
+    box-shadow:0 8px 16px rgba(120,90,60,0.18); display:flex; flex-direction:column;
+    align-items:center; justify-content:center; cursor:pointer; font-size:22px;
+    transition:transform .15s ease; flex-shrink:0; position:relative;
   }
   .food-btn:active{ transform:scale(0.88); }
-
-  /* Menú de Botones en Cuadrícula (2 filas x 4 columnas) */
-  .dock{
-    display:grid;
-    grid-template-columns:repeat(4, 1fr);
-    padding:14px 12px;
-    gap:8px;
-    box-sizing:border-box;
+  .food-btn .badge{
+    position:absolute; top:-4px; right:-4px; background:var(--pink-dark); color:white;
+    font-size:10px; font-weight:800; border-radius:10px; padding:1px 5px; box-shadow:0 2px 4px rgba(0,0,0,0.2);
   }
 
+  /* Menú Dock en 2 Filas */
+  .dock{ display:grid; grid-template-columns:repeat(4, 1fr); padding:14px 12px; gap:8px; box-sizing:border-box; }
   .dock-btn{
-    background:var(--white);
-    border:none;
-    height:58px;
-    border-radius:16px;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    gap:2px;
-    box-shadow:0 4px 10px rgba(150,120,180,0.12);
-    cursor:pointer;
+    background:var(--white); border:none; height:58px; border-radius:16px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
+    box-shadow:0 4px 10px rgba(150,120,180,0.12); cursor:pointer;
     transition:transform .15s ease, box-shadow .15s ease, background .2s ease;
   }
   .dock-btn svg{ width:22px; height:22px; }
-  .dock-btn span{
-    font-family:'Baloo 2',sans-serif;
-    font-size:10px;
-    font-weight:700;
-    color:var(--plum-soft);
-    white-space:nowrap;
-  }
+  .dock-btn span{ font-family:'Baloo 2',sans-serif; font-size:10px; font-weight:700; color:var(--plum-soft); white-space:nowrap; }
   .dock-btn:active{ transform:scale(0.9); }
-
   .dock-btn.active{
     background:linear-gradient(160deg,#FFE9D6,#FFD9BC);
     box-shadow:0 4px 10px rgba(230,110,30,0.28) inset, 0 6px 14px rgba(150,120,180,0.15);
   }
 
-  /* Monedas, Pantallas y Tienda */
+  /* Monedas y Ventanas */
   .wallet{
     display:flex;justify-content:center;align-items:center;gap:6px;
     margin:0 20px 6px;padding:6px 12px;border-radius:14px;
@@ -413,8 +343,7 @@
   .close-screen{
     border:0;background:#EFE7F5;border-radius:14px;padding:8px 14px;
     font-weight:800;font-size:16px;color:var(--plum);cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:background .2s ease;
+    display:flex;align-items:center;justify-content:center; transition:background .2s ease;
   }
   .close-screen:active{background:#E0D2EC}
   .coins-big{font-weight:800;background:#FFF0B8;border-radius:12px;padding:6px 10px;margin-bottom:12px;display:inline-block}
@@ -443,17 +372,24 @@
   .notice{padding:10px;border-radius:14px;background:#F4ECFA;font-size:12px;margin-bottom:10px}
   .empty{grid-column:1/-1;text-align:center;padding:30px;color:#8B7F99}
   .equipped{outline:3px solid #5FC9C0}
+  
+  /* Posicionamiento Ajustado y Preciso de Accesorios */
   .accessory-badge{
-    position:absolute;z-index:8;font-size:28px;pointer-events:none;
+    position:absolute; z-index:8; pointer-events:none;
+    display:flex; align-items:center; justify-content:center;
   }
-  #accHat{top:60px;left:50%;transform:translateX(-50%)}
-  #accGlasses{top:95px;left:50%;transform:translateX(-50%)}
-  #accBow{top:138px;left:50%;transform:translateX(-50%)}
-  .shop-tabs{display:flex;gap:7px;margin-bottom:12px}
-  .shop-tab{flex:1;border:0;padding:8px;border-radius:12px;background:#EFE7F5;font-weight:800;cursor:pointer;font-size:12px}
+  #accHat{ top:12px; left:50%; transform:translateX(-50%); font-size:38px; }
+  #accBow{ top:142px; left:50%; transform:translateX(-50%) scale(0.9); font-size:26px; }
+
+  .shop-tabs{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap}
+  .shop-tab{flex:1;border:0;padding:8px 4px;border-radius:12px;background:#EFE7F5;font-weight:800;cursor:pointer;font-size:11px}
   .shop-tab.active{background:#FFD9BC}
 
-  /* Interfaz de Chat */
+  /* Quiz Math / Word UI */
+  .quiz-btn{background:white;border:2px solid #EFE7F5;border-radius:12px;padding:10px;margin:5px;font-weight:800;font-size:16px;cursor:pointer;width:45%;color:var(--plum)}
+  .quiz-btn:active{background:#FF9EB5;color:white}
+
+  /* Chat */
   .chat-screen{display:none;flex-direction:column;height:100%}
   .chat-status{font-size:11px;font-weight:800;color:#8B7F99}
   .chat-messages{flex:1;min-height:260px;max-height:340px;overflow:auto;padding:8px 2px 14px;display:flex;flex-direction:column;gap:9px}
@@ -503,6 +439,12 @@
     <div class="cloud c2"></div>
     <div class="ground"></div>
 
+    <!-- Decoraciones de Casa -->
+    <div class="home-decor" id="decorBed">🛏️</div>
+    <div class="home-decor" id="decorPlant">🪴</div>
+    <div class="home-decor" id="decorLamp">💡</div>
+    <div class="home-decor" id="decorBall">⚽</div>
+
     <div class="tub" id="tub"></div>
 
     <div class="bubble" id="bubble">¡Hola! Soy tu conejito 🐰</div>
@@ -513,8 +455,28 @@
       <svg id="bunny" viewBox="0 0 240 260">
         <ellipse cx="182" cy="196" rx="14" ry="14" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
         <g id="body-group">
+          <!-- Cuerpo Base -->
           <ellipse cx="120" cy="196" rx="62" ry="52" fill="#FFFFFF" stroke="#EDE3F5" stroke-width="2"/>
           <ellipse cx="120" cy="210" rx="34" ry="24" fill="#FFF0F5" opacity="0.7"/>
+
+          <!-- ROPA SVG ILUSTRADA (Camiseta, Sudadera, Traje) -->
+          <g id="clothTshirt" class="cloth-layer">
+            <path d="M72 175 C70 215, 170 215, 168 175 C160 160, 80 160, 72 175 Z" fill="#FF5733" stroke="#C70039" stroke-width="2"/>
+            <path d="M100 162 Q120 172 140 162" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+          </g>
+          
+          <g id="clothHoodie" class="cloth-layer">
+            <path d="M68 170 C65 220, 175 220, 172 170 C160 155, 80 155, 68 170 Z" fill="#3498DB" stroke="#2980B9" stroke-width="2"/>
+            <rect x="95" y="195" width="50" height="20" rx="5" fill="#2980B9"/>
+            <circle cx="110" cy="170" r="3" fill="#FFF"/>
+            <circle cx="130" cy="170" r="3" fill="#FFF"/>
+          </g>
+
+          <g id="clothSuit" class="cloth-layer">
+            <path d="M70 170 C68 218, 172 218, 170 170 Z" fill="#2C3E50"/>
+            <polygon points="120,165 100,190 140,190" fill="#FFFFFF"/>
+            <polygon points="120,172 115,200 120,205 125,200" fill="#E74C3C"/>
+          </g>
 
           <ellipse cx="86" cy="238" rx="16" ry="11" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
           <ellipse cx="154" cy="238" rx="16" ry="11" fill="#fff" stroke="#EDE3F5" stroke-width="2"/>
@@ -539,6 +501,16 @@
             <circle cx="102.5" cy="113.5" r="1.6" fill="#fff"/>
             <circle cx="142.5" cy="113.5" r="1.6" fill="#fff"/>
           </g>
+
+          <!-- Gafas Integradas SVG -->
+          <g id="svgGlasses">
+            <circle cx="100" cy="116" r="13" fill="none" stroke="#2B2636" stroke-width="3"/>
+            <circle cx="140" cy="116" r="13" fill="none" stroke="#2B2636" stroke-width="3"/>
+            <line x1="113" y1="116" x2="127" y2="116" stroke="#2B2636" stroke-width="3"/>
+            <line x1="87" y1="116" x2="78" y2="112" stroke="#2B2636" stroke-width="2.5"/>
+            <line x1="153" y1="116" x2="162" y2="112" stroke="#2B2636" stroke-width="2.5"/>
+          </g>
+
           <g class="zzz-eyes">
             <path d="M93 116 Q100 121 107 116" stroke="#4A3F55" stroke-width="2.4" fill="none" stroke-linecap="round"/>
             <path d="M133 116 Q140 121 147 116" stroke="#4A3F55" stroke-width="2.4" fill="none" stroke-linecap="round"/>
@@ -558,20 +530,17 @@
       </div>
     </div>
 
+    <!-- Sombreros / Moños -->
     <div class="accessory-badge" id="accHat"></div>
-    <div class="accessory-badge" id="accGlasses"></div>
     <div class="accessory-badge" id="accBow"></div>
 
     <div class="sleep-overlay" id="sleepOverlay"><div class="moon"></div></div>
 
-    <div class="tray" id="tray">
-      <button class="food-btn" data-food="carrot" title="Zanahoria">🥕</button>
-      <button class="food-btn" data-food="lettuce" title="Lechuga">🥬</button>
-      <button class="food-btn" data-food="cookie" title="Galleta">🍪</button>
-    </div>
+    <!-- Bandeja Dinámica de Comida -->
+    <div class="tray" id="tray"></div>
   </div>
 
-  <!-- Menú de 8 Botones en 2 filas -->
+  <!-- Dock de Botones -->
   <div class="dock">
     <button class="dock-btn" id="btnFeed" title="Alimentar">
       <svg viewBox="0 0 24 24"><path fill="#FF8A3D" d="M12 2c-1 3-4 4-4 8a4 4 0 0 0 8 0c0-4-3-5-4-8z"/><path fill="#5FA85B" d="M11 3c1-1.6 3-2 4-1.6-.4 1.2-1.6 2.6-3.2 3z"/></svg>
@@ -589,46 +558,49 @@
     
     <button class="dock-btn" id="btnPlay" title="Jugar"><span style="font-size:20px">🎮</span><span>Jugar</span></button>
     <button class="dock-btn" id="btnShop" title="Tienda"><span style="font-size:20px">🛒</span><span>Tienda</span></button>
-    <button class="dock-btn" id="btnInventory" title="Accesorios"><span style="font-size:20px">🎒</span><span>Accesorios</span></button>
+    <button class="dock-btn" id="btnInventory" title="Accesorios"><span style="font-size:20px">🎒</span><span>Mochila</span></button>
     <button class="dock-btn" id="btnSleep" title="Dormir">
       <svg viewBox="0 0 24 24"><path fill="#9678E0" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
       <span>Dormir</span>
     </button>
   </div>
 
-  <!-- Modal del Chat -->
+  <!-- Pantalla de Chat -->
   <div class="screen chat-screen" id="chatScreen">
     <div class="screen-head"><div><h2>💬 Habla con Copito</h2><div class="chat-status" id="chatStatus">Conectado</div></div><button type="button" class="close-screen">✕</button></div>
     <div class="chat-messages" id="chatMessages"><div class="chat-msg copito">🐰 ¡Holaaa! Soy Copito. ¡Háblame de lo que quieras! 😆</div></div>
     <form class="chat-compose" id="chatForm"><input class="chat-input" id="chatInput" maxlength="500" autocomplete="off" placeholder="Escríbele a Copito..."><button class="chat-send" id="chatSend" type="submit">➤</button></form>
   </div>
 
-  <!-- Modal de Tienda -->
+  <!-- Pantalla de Tienda -->
   <div class="screen" id="shopScreen">
     <div class="screen-head"><h2>🛒 Tienda</h2><button type="button" class="close-screen">✕</button></div>
     <div class="coins-big">🪙 <span class="screenCoins">100</span></div>
     <div class="shop-tabs">
       <button class="shop-tab active" data-shop-tab="food">🍎 Comida</button>
-      <button class="shop-tab" data-shop-tab="accessory">👕 Accesorios</button>
+      <button class="shop-tab" data-shop-tab="clothing">👕 Ropa</button>
+      <button class="shop-tab" data-shop-tab="accessory">👓 Accesorios</button>
+      <button class="shop-tab" data-shop-tab="bg">🖼️ Fondos</button>
       <button class="shop-tab" data-shop-tab="home">🏠 Casa</button>
     </div>
     <div class="shop-grid" id="shopGrid"></div>
   </div>
 
-  <!-- Modal de Inventario -->
+  <!-- Pantalla de Inventario -->
   <div class="screen" id="inventoryScreen">
-    <div class="screen-head"><h2>🎒 Mis cosas</h2><button type="button" class="close-screen">✕</button></div>
-    <div class="notice">Equipa tus accesorios para cambiar el aspecto de Copito.</div>
+    <div class="screen-head"><h2>🎒 Mis Cosas</h2><button type="button" class="close-screen">✕</button></div>
+    <div class="notice">Ponte la ropa comprada, accesorios o cambia el fondo.</div>
     <div class="inventory-grid" id="inventoryGrid"></div>
   </div>
 
-  <!-- Modal de Juegos -->
+  <!-- Pantalla de Juegos -->
   <div class="screen" id="gameScreen">
     <div class="screen-head"><h2>🎮 Zona de juegos</h2><button type="button" class="close-screen">✕</button></div>
     <div class="game-grid" id="gameMenu">
-      <div class="game-card"><div class="game-icon">🥕</div><h3>Atrapa zanahorias</h3><p>¡Atrapa 10 rápido!</p><button class="play-btn" data-game="carrot">Jugar</button></div>
-      <div class="game-card"><div class="game-icon">🧠</div><h3>Memoria</h3><p>Encuentra las parejas.</p><button class="play-btn" data-game="memory">Jugar</button></div>
-      <div class="game-card"><div class="game-icon">⭐</div><h3>Atrapa estrellas</h3><p>Gana puntos en 20s.</p><button class="play-btn" data-game="stars">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">➕</div><h3>Mates Rápidas</h3><p>¡Resuelve y gana!</p><button class="play-btn" data-game="math">Jugar (Edu)</button></div>
+      <div class="game-card"><div class="game-icon">🔤</div><h3>Palabras</h3><p>Vocabulario y reflejos</p><button class="play-btn" data-game="words">Jugar (Edu)</button></div>
+      <div class="game-card"><div class="game-icon">🥕</div><h3>Atrapa Zanahorias</h3><p>¡Atrapa 10 rápido!</p><button class="play-btn" data-game="carrot">Jugar</button></div>
+      <div class="game-card"><div class="game-icon">🧠</div><h3>Memoria</h3><p>Encuentra parejas.</p><button class="play-btn" data-game="memory">Jugar</button></div>
     </div>
     <div id="gamePlay" style="display:none">
       <div class="game-area" id="gameArea"></div>
@@ -779,44 +751,135 @@
     }
   }
 
-  /* Alimentación */
-  const foodInfo = {
-    carrot: { hunger: 22, hygiene: 0, emoji:'✨', label:'+22' },
-    lettuce:{ hunger: 14, hygiene: 3, emoji:'✨', label:'+14' },
-    cookie: { hunger: 28, hygiene: -6, emoji:'✨', label:'+28' },
+  /* Catálogo Global de Items */
+  const catalog = {
+    food: [
+      {id:'carrot_base', name:'Zanahoria', icon:'🥕', price:0, type:'food', hunger:22, label:'+22'},
+      {id:'apple', name:'Manzana', icon:'🍎', price:15, type:'food', hunger:18, label:'+18'},
+      {id:'cookie', name:'Galleta', icon:'🍪', price:20, type:'food', hunger:28, label:'+28'},
+      {id:'cake', name:'Pastel', icon:'🍰', price:35, type:'food', hunger:42, label:'+42'}
+    ],
+    clothing: [
+      {id:'cloth_tshirt', name:'Camiseta Roja', icon:'👕', price:120, type:'clothing', clothClass:'has-cloth-tshirt'},
+      {id:'cloth_hoodie', name:'Sudadera Azul', icon:'🧥', price:200, type:'clothing', clothClass:'has-cloth-hoodie'},
+      {id:'cloth_suit', name:'Traje Elegante', icon:'👔', price:350, type:'clothing', clothClass:'has-cloth-suit'}
+    ],
+    accessory: [
+      {id:'hat', name:'Sombrero', icon:'🎩', price:100, type:'accessory', slot:'hat'},
+      {id:'glasses', name:'Gafas', icon:'🤓', price:130, type:'accessory', slot:'glasses'},
+      {id:'bow', name:'Moño', icon:'🎀', price:90, type:'accessory', slot:'bow'},
+      {id:'crown', name:'Corona', icon:'👑', price:300, type:'accessory', slot:'hat'}
+    ],
+    bg: [
+      {id:'bg_night', name:'Noche Estrellada', icon:'🌌', price:150, type:'bg', bgClass:'bg-night'},
+      {id:'bg_forest', name:'Bosque Verde', icon:'🌲', price:180, type:'bg', bgClass:'bg-forest'},
+      {id:'bg_sunset', name:'Atardecer', icon:'🌅', price:200, type:'bg', bgClass:'bg-sunset'}
+    ],
+    home: [
+      {id:'bed', name:'Cama cómoda', icon:'🛏️', price:180, type:'home', elementId:'decorBed'},
+      {id:'plant', name:'Planta', icon:'🪴', price:90, type:'home', elementId:'decorPlant'},
+      {id:'lamp', name:'Lámpara', icon:'💡', price:130, type:'home', elementId:'decorLamp'},
+      {id:'ball', name:'Pelota', icon:'⚽', price:75, type:'home', elementId:'decorBall'}
+    ]
   };
+
+  const save = {
+    coins: 100,
+    inventory: { 'carrot_base': 3 },
+    equipped: { hat: null, glasses: null, bow: null, cloth: null, bg: null },
+    homeEquipped: {}
+  };
+
+  function loadSave(){
+    try{
+      const old = JSON.parse(localStorage.getItem('copito_save_v4') || 'null');
+      if(old){
+        Object.assign(save, old);
+        save.inventory = save.inventory || {};
+        save.equipped = save.equipped || {hat:null,glasses:null,bow:null,cloth:null,bg:null};
+        save.homeEquipped = save.homeEquipped || {};
+      }
+    }catch(e){}
+    if(save.inventory['carrot_base'] === undefined) save.inventory['carrot_base'] = 3;
+    updateCoins(); renderAccessories(); renderHomeDecor(); renderBackground();
+  }
+
+  function persist(){
+    localStorage.setItem('copito_save_v4', JSON.stringify(save));
+    updateCoins();
+  }
+
+  function updateCoins(){
+    coinsEl.textContent = save.coins;
+    document.querySelectorAll('.screenCoins').forEach(e=>e.textContent=save.coins);
+  }
+  function earnCoins(n, msg=''){
+    save.coins += n; persist();
+    if(msg) showBubble(msg, 1600);
+  }
+  function spend(n){
+    if(save.coins < n){ showBubble('Necesito más monedas 🥺',1500); return false; }
+    save.coins -= n; persist(); return true;
+  }
+
+  /* Renderizado Dinámico de Comida */
+  function renderFoodTray(){
+    tray.innerHTML = '';
+    let hasFood = false;
+
+    catalog.food.forEach(item => {
+      const count = save.inventory[item.id] || 0;
+      if(count > 0){
+        hasFood = true;
+        const btn = document.createElement('button');
+        btn.className = 'food-btn';
+        btn.innerHTML = `${item.icon}<span class="badge">${count}</span>`;
+        btn.title = `${item.name} (${item.label})`;
+        btn.onclick = () => eatFood(item);
+        tray.appendChild(btn);
+      }
+    });
+
+    if(!hasFood){
+      tray.innerHTML = `<div style="font-size:12px;font-weight:700;color:#8B7F99;padding:10px;">¡No tienes comida! Cómprala en la tienda 🛒</div>`;
+    }
+  }
+
+  function eatFood(item){
+    if(state.hunger >= 98){
+      showBubble('no tengo más hambre 🙅', 1600);
+      return;
+    }
+
+    save.inventory[item.id]--;
+    if(save.inventory[item.id] <= 0) delete save.inventory[item.id];
+    persist();
+    renderFoodTray();
+
+    state.hunger = clamp(state.hunger + item.hunger);
+    updateUI();
+
+    bunnySvg.classList.add('eating');
+    setTimeout(() => bunnySvg.classList.remove('eating'), 900);
+
+    const pos = localPos(mouthGroup);
+    spawnEmoji(pos.x - 14, pos.y - 10, item.icon);
+    spawnFloatText(pos.x + 18, pos.y - 6, item.label, '#E56F22');
+    showBubble('¡ñam ñam! 😋', 1200);
+
+    if(!Object.keys(save.inventory).some(k => catalog.food.map(f=>f.id).includes(k))){
+      tray.classList.remove('show');
+      feedMenuOpen = false;
+      btnFeed.classList.remove('active');
+    }
+  }
 
   btnFeed.addEventListener('click', () => {
     if(isSleeping){ showHint(); return; }
     feedMenuOpen = !feedMenuOpen;
+    if(feedMenuOpen) renderFoodTray();
     tray.classList.toggle('show', feedMenuOpen);
     btnFeed.classList.toggle('active', feedMenuOpen);
-  });
-
-  tray.querySelectorAll('.food-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const info = foodInfo[btn.dataset.food];
-      tray.classList.remove('show');
-      feedMenuOpen = false;
-      btnFeed.classList.remove('active');
-
-      if(state.hunger >= 97){
-        showBubble('no tengo más hambre 🙅', 1600);
-        return;
-      }
-
-      state.hunger = clamp(state.hunger + info.hunger);
-      state.hygiene = clamp(state.hygiene + info.hygiene);
-      updateUI();
-
-      bunnySvg.classList.add('eating');
-      setTimeout(() => bunnySvg.classList.remove('eating'), 900);
-
-      const pos = localPos(mouthGroup);
-      spawnEmoji(pos.x - 14, pos.y - 10, btn.textContent);
-      spawnFloatText(pos.x + 18, pos.y - 6, info.label, '#E56F22');
-      showBubble('¡ñam ñam! 😋', 1200);
-    });
   });
 
   /* Baño */
@@ -904,8 +967,7 @@
   setInterval(decayTick, 3500);
   setInterval(randomIdle, 4200);
 
-  /* Guardado local y tienda */
-  const SAVE_KEY = 'copito_save_v2';
+  /* Modal y Tienda */
   const coinsEl = document.getElementById('coins');
   const shopScreen = document.getElementById('shopScreen');
   const inventoryScreen = document.getElementById('inventoryScreen');
@@ -916,73 +978,8 @@
   const gamePlay = document.getElementById('gamePlay');
   const gameArea = document.getElementById('gameArea');
 
-  const catalog = {
-    food: [
-      {id:'apple', name:'Manzana', icon:'🍎', price:15, type:'food', hunger:18},
-      {id:'carrot_shop', name:'Zanahoria', icon:'🥕', price:10, type:'food', hunger:22},
-      {id:'cookie_shop', name:'Galleta', icon:'🍪', price:20, type:'food', hunger:28},
-      {id:'cake', name:'Pastel', icon:'🍰', price:35, type:'food', hunger:40}
-    ],
-    accessory: [
-      {id:'hat', name:'Sombrero', icon:'🎩', price:120, type:'accessory', slot:'hat'},
-      {id:'glasses', name:'Gafas', icon:'🤓', price:150, type:'accessory', slot:'glasses'},
-      {id:'bow', name:'Moño', icon:'🎀', price:100, type:'accessory', slot:'bow'},
-      {id:'crown', name:'Corona', icon:'👑', price:300, type:'accessory', slot:'hat'}
-    ],
-    home: [
-      {id:'bed', name:'Cama cómoda', icon:'🛏️', price:180, type:'home'},
-      {id:'plant', name:'Planta', icon:'🪴', price:90, type:'home'},
-      {id:'lamp', name:'Lámpara', icon:'💡', price:130, type:'home'},
-      {id:'ball', name:'Pelota', icon:'⚽', price:75, type:'home'}
-    ]
-  };
-
-  const save = {
-    coins:100, inventory:{}, equipped:{hat:null,glasses:null,bow:null}, home:[],
-    best:{carrot:0,memory:0,stars:0}
-  };
-
-  function loadSave(){
-    try{
-      const old = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
-      if(old){
-        Object.assign(save, old);
-        save.inventory = save.inventory || {};
-        save.equipped = save.equipped || {hat:null,glasses:null,bow:null};
-      }
-    }catch(e){}
-    updateCoins(); renderAccessories();
-  }
-
-  function persist(){
-    localStorage.setItem(SAVE_KEY, JSON.stringify(save));
-    updateCoins();
-  }
-  function updateCoins(){
-    coinsEl.textContent = save.coins;
-    document.querySelectorAll('.screenCoins').forEach(e=>e.textContent=save.coins);
-  }
-  function earnCoins(n, msg=''){
-    save.coins += n; persist();
-    if(msg) showBubble(msg, 1600);
-  }
-  function spend(n){
-    if(save.coins < n){ showBubble('Necesito más monedas 🥺',1500); return false; }
-    save.coins -= n; persist(); return true;
-  }
-
-  function openScreen(el){
-    closeAllScreens();
-    el.classList.add('open');
-    updateCoins();
-  }
-
-  function closeAllScreens(){
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('open'));
-  }
-
-  /* Cierre de modales */
-  closeAllScreens();
+  function openScreen(el){ closeAllScreens(); el.classList.add('open'); updateCoins(); }
+  function closeAllScreens(){ document.querySelectorAll('.screen').forEach(s => s.classList.remove('open')); }
 
   document.getElementById('btnShop').addEventListener('click',()=>{renderShop('food');openScreen(shopScreen)});
   document.getElementById('btnInventory').addEventListener('click',()=>{renderInventory();openScreen(inventoryScreen)});
@@ -990,16 +987,10 @@
   
   document.addEventListener('click', (e) => {
     const closeBtn = e.target.closest('.close-screen');
-    if(closeBtn){
-      e.preventDefault();
-      e.stopPropagation();
-      closeAllScreens();
-    }
+    if(closeBtn){ e.preventDefault(); e.stopPropagation(); closeAllScreens(); }
   });
 
-  window.addEventListener('keydown', (e) => {
-    if(e.key === 'Escape') closeAllScreens();
-  });
+  window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeAllScreens(); });
 
   document.querySelectorAll('[data-shop-tab]').forEach(b=>{
     b.addEventListener('click',()=>{
@@ -1027,37 +1018,156 @@
 
   function renderInventory(){
     inventoryGrid.innerHTML='';
-    const all=[...catalog.accessory,...catalog.home];
-    let any=false;
-    all.forEach(item=>{
-      if(!(save.inventory[item.id]>0)) return;
-      any=true;
-      const card=document.createElement('div'); card.className='inv-card';
-      const equipped=Object.values(save.equipped).includes(item.id);
-      card.innerHTML=`<div class="shop-icon">${item.icon}</div><h3>${item.name}</h3>
-        <small>Cantidad: ${save.inventory[item.id]}</small>
-        ${item.type==='accessory'?`<button class="use-btn">${equipped?'Quitar':'Equipar'}</button>`:''}`;
-      if(equipped) card.classList.add('equipped');
-      if(item.type==='accessory'){
+    const allItems = [...catalog.clothing, ...catalog.accessory, ...catalog.bg, ...catalog.home, ...catalog.food];
+    let any = false;
+
+    allItems.forEach(item=>{
+      const qty = save.inventory[item.id] || 0;
+      if(qty <= 0) return;
+      any = true;
+
+      const card = document.createElement('div'); card.className = 'inv-card';
+      
+      const isClothEquipped = item.type === 'clothing' && save.equipped.cloth === item.id;
+      const isAccEquipped = item.type === 'accessory' && save.equipped[item.slot] === item.id;
+      const isBgEquipped = item.type === 'bg' && save.equipped.bg === item.id;
+      const isHomeEquipped = item.type === 'home' && save.homeEquipped[item.id];
+
+      const isEquipped = isClothEquipped || isAccEquipped || isBgEquipped || isHomeEquipped;
+
+      card.innerHTML = `<div class="shop-icon">${item.icon}</div><h3>${item.name}</h3>
+        <small>Cantidad: ${qty}</small>
+        ${['clothing','accessory','bg'].includes(item.type) ? `<button class="use-btn">${isEquipped?'Quitar':'Usar'}</button>` : ''}
+        ${item.type === 'home' ? `<button class="use-btn">${isHomeEquipped?'Quitar':'Colocar'}</button>` : ''}
+        ${item.type === 'food' ? `<small style="display:block;margin-top:6px;color:#E56F22;font-weight:700">Guardado</small>` : ''}`;
+
+      if(isEquipped) card.classList.add('equipped');
+
+      if(['clothing','accessory','bg','home'].includes(item.type)){
         card.querySelector('button').addEventListener('click',()=>{
-          if(save.equipped[item.slot]===item.id) save.equipped[item.slot]=null;
-          else save.equipped[item.slot]=item.id;
-          persist(); renderInventory(); renderAccessories();
+          if(item.type === 'clothing'){
+            save.equipped.cloth = (save.equipped.cloth === item.id) ? null : item.id;
+          } else if(item.type === 'accessory'){
+            save.equipped[item.slot] = (save.equipped[item.slot] === item.id) ? null : item.id;
+          } else if(item.type === 'bg'){
+            save.equipped.bg = (save.equipped.bg === item.id) ? null : item.id;
+          } else if(item.type === 'home'){
+            save.homeEquipped[item.id] = !save.homeEquipped[item.id];
+          }
+          persist(); renderInventory(); renderAccessories(); renderBackground(); renderHomeDecor();
         });
       }
+
       inventoryGrid.appendChild(card);
     });
-    if(!any) inventoryGrid.innerHTML='<div class="empty">Todavía no tienes accesorios. ¡Ve a la tienda! 🛒</div>';
+
+    if(!any) inventoryGrid.innerHTML = '<div class="empty">Tu mochila está vacía. ¡Visita la tienda! 🛒</div>';
   }
 
   function renderAccessories(){
-    const hat=save.equipped.hat, glasses=save.equipped.glasses, bow=save.equipped.bow;
-    document.getElementById('accHat').textContent=hat==='hat'?'🎩':hat==='crown'?'👑':'';
-    document.getElementById('accGlasses').textContent=glasses==='glasses'?'🤓':'';
-    document.getElementById('accBow').textContent=bow==='bow'?'🎀':'';
+    const hat = save.equipped.hat, glasses = save.equipped.glasses, bow = save.equipped.bow, cloth = save.equipped.cloth;
+    document.getElementById('accHat').textContent = hat==='hat'?'🎩':hat==='crown'?'👑':'';
+    document.getElementById('accBow').textContent = bow==='bow'?'🎀':'';
+    bunnyWrap.classList.toggle('has-glasses', glasses === 'glasses');
+
+    // Manejar Ropa SVG
+    bunnyWrap.classList.remove('has-cloth-tshirt', 'has-cloth-hoodie', 'has-cloth-suit');
+    if(cloth){
+      const clothObj = catalog.clothing.find(c => c.id === cloth);
+      if(clothObj) bunnyWrap.classList.add(clothObj.clothClass);
+    }
   }
 
-  /* Minijuegos */
+  function renderBackground(){
+    stage.classList.remove('bg-night', 'bg-forest', 'bg-sunset');
+    if(save.equipped.bg){
+      const bgObj = catalog.bg.find(b => b.id === save.equipped.bg);
+      if(bgObj) stage.classList.add(bgObj.bgClass);
+    }
+  }
+
+  function renderHomeDecor(){
+    catalog.home.forEach(item => {
+      const el = document.getElementById(item.elementId);
+      if(el){
+        el.style.display = save.homeEquipped[item.id] ? 'block' : 'none';
+      }
+    });
+  }
+
+  /* MINIJUEGOS EDUCATIVOS Y DIVERTIDOS */
+
+  // 1. Juego Educativo: Matemáticas Rápidas
+  function startMathGame(){
+    gameMenu.style.display='none'; gamePlay.style.display='block';
+    let score = 0, rounds = 0;
+    
+    function nextQuestion(){
+      if(rounds >= 5){
+        const reward = score * 10; earnCoins(reward);
+        gameArea.innerHTML = `<div style="font-size:50px">🎓</div><h2>¡Juego Terminado!</h2><p>Respuestas correctas: ${score}/5</p><h2>🪙 +${reward} monedas</h2><button class="play-btn" id="againMath">Jugar Otra Vez</button>`;
+        document.getElementById('againMath').onclick = startMathGame;
+        return;
+      }
+      rounds++;
+      const n1 = Math.floor(Math.random() * 10) + 1;
+      const n2 = Math.floor(Math.random() * 10) + 1;
+      const ans = n1 + n2;
+      const opts = [ans, ans + 2, Math.max(1, ans - 3)].sort(() => Math.random() - 0.5);
+
+      gameArea.innerHTML = `<div class="game-score">➕ Mates (${rounds}/5) · Puntos: ${score}</div>
+        <div style="font-size:32px;font-weight:800;margin:20px 0;">${n1} + ${n2} = ?</div>
+        <div>${opts.map(o => `<button class="quiz-btn" data-ans="${o}">${o}</button>`).join('')}</div>
+        <button type="button" class="close-screen" id="stopGame" style="margin-top:20px">Salir</button>`;
+
+      gameArea.querySelectorAll('.quiz-btn').forEach(btn => {
+        btn.onclick = () => {
+          if(parseInt(btn.dataset.ans) === ans){ score++; }
+          nextQuestion();
+        };
+      });
+      document.getElementById('stopGame').onclick = () => { gameMenu.style.display='grid'; gamePlay.style.display='none'; };
+    }
+    nextQuestion();
+  }
+
+  // 2. Juego Educativo: Vocabulario
+  function startWordGame(){
+    gameMenu.style.display='none'; gamePlay.style.display='block';
+    const words = [
+      {w:'Zanahoria', i:'🥕'}, {w:'Manzana', i:'🍎'}, {w:'Estrella', i:'⭐'},
+      {w:'Galleta', i:'🍪'}, {w:'Pelota', i:'⚽'}, {w:'Sol', i:'☀️'}
+    ];
+    let score = 0, rounds = 0;
+
+    function nextWord(){
+      if(rounds >= 5){
+        const reward = score * 8; earnCoins(reward);
+        gameArea.innerHTML = `<div style="font-size:50px">📚</div><h2>¡Excelente trabajo!</h2><p>Aciertos: ${score}/5</p><h2>🪙 +${reward} monedas</h2><button class="play-btn" id="againWord">Jugar Otra Vez</button>`;
+        document.getElementById('againWord').onclick = startWordGame;
+        return;
+      }
+      rounds++;
+      const target = words[Math.floor(Math.random() * words.length)];
+      const opts = [target, ...words.filter(w=>w.w!==target.w).sort(()=>Math.random()-.5).slice(0,2)].sort(()=>Math.random()-.5);
+
+      gameArea.innerHTML = `<div class="game-score">🔤 Vocabulario (${rounds}/5)</div>
+        <div style="font-size:24px;font-weight:800;margin:15px 0;">¿Cuál icono es "<b>${target.w}</b>"?</div>
+        <div>${opts.map(o => `<button class="quiz-btn" style="font-size:30px" data-word="${o.w}">${o.i}</button>`).join('')}</div>
+        <button type="button" class="close-screen" id="stopGame" style="margin-top:20px">Salir</button>`;
+
+      gameArea.querySelectorAll('.quiz-btn').forEach(btn => {
+        btn.onclick = () => {
+          if(btn.dataset.word === target.w){ score++; }
+          nextWord();
+        };
+      });
+      document.getElementById('stopGame').onclick = () => { gameMenu.style.display='grid'; gamePlay.style.display='none'; };
+    }
+    nextWord();
+  }
+
+  // 3. Juego Divertido: Zanahorias
   function startCarrotGame(){
     gameMenu.style.display='none'; gamePlay.style.display='block';
     let score=0, time=20, timer=null;
@@ -1065,9 +1175,7 @@
       <button type="button" class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
     const board=document.getElementById('board'), scoreEl=gameArea.querySelector('.game-score');
     const target=document.createElement('button'); target.className='game-target'; target.textContent='🥕'; board.appendChild(target);
-    function move(){
-      target.style.left=Math.random()*75+'%'; target.style.top=Math.random()*65+'%';
-    }
+    function move(){ target.style.left=Math.random()*75+'%'; target.style.top=Math.random()*65+'%'; }
     target.onclick=()=>{
       score++; move(); scoreEl.textContent=`🥕 ${score}/10 · ⏱️ ${time}s`;
       if(score>=10) finish(true);
@@ -1084,6 +1192,7 @@
     }
   }
 
+  // 4. Juego Divertido: Memoria
   function startMemoryGame(){
     gameMenu.style.display='none';gamePlay.style.display='block';
     const symbols=['🥕','🍎','⭐','🍪','🥕','🍎','⭐','🍪'];
@@ -1115,26 +1224,13 @@
     document.getElementById('stopGame').onclick=()=>{gameMenu.style.display='grid';gamePlay.style.display='none'};
   }
 
-  function startStarsGame(){
-    gameMenu.style.display='none';gamePlay.style.display='block';
-    let score=0,time=20,timer=null;
-    gameArea.innerHTML=`<div class="game-score">⭐ ${score} pts · ⏱️ ${time}s</div><div class="game-board" id="board"></div>
-      <button type="button" class="close-screen" id="stopGame" style="margin-top:10px">Salir</button>`;
-    const board=document.getElementById('board'), scoreEl=gameArea.querySelector('.game-score');
-    const target=document.createElement('button');target.className='game-target';target.textContent='⭐';board.appendChild(target);
-    function move(){target.style.left=Math.random()*75+'%';target.style.top=Math.random()*65+'%'}
-    target.onclick=()=>{score+=5;move();scoreEl.textContent=`⭐ ${score} pts · ⏱️ ${time}s`};
-    move();
-    timer=setInterval(()=>{time--;scoreEl.textContent=`⭐ ${score} pts · ⏱️ ${time}s`;if(time<=0){
-      clearInterval(timer);const reward=Math.floor(score/5)*3;earnCoins(reward);
-      gameArea.innerHTML=`<div style="font-size:50px">⭐</div><h2>¡Tiempo!</h2><p>Puntos: ${score}</p><h2>🪙 +${reward}</h2><button class="play-btn" id="again">Jugar otra vez</button>`;
-      document.getElementById('again').onclick=startStarsGame;
-    }},1000);
-    document.getElementById('stopGame').onclick=()=>{gameMenu.style.display='grid';gamePlay.style.display='none'};
-  }
-
   document.querySelectorAll('[data-game]').forEach(b=>{
-    b.addEventListener('click',()=>({carrot:startCarrotGame,memory:startMemoryGame,stars:startStarsGame}[b.dataset.game])());
+    b.addEventListener('click',()=>({
+      math: startMathGame,
+      words: startWordGame,
+      carrot: startCarrotGame,
+      memory: startMemoryGame
+    }[b.dataset.game])());
   });
 
   loadSave();
@@ -1154,21 +1250,12 @@
   function generateLocalResponse(text) {
     const q = text.toLowerCase();
     const name = petName.textContent.trim() || 'Copito';
-    
     if (q.includes('hola') || q.includes('buenas')) return `¡Hola, hola! 🐾 Soy ${name}. ¿Quieres jugar conmigo?`;
-    if (q.includes('como estas') || q.includes('cómo estás')) return `¡Me siento con ${Math.round(state.energy)}% de energía y ganas de comer zanahorias! 🥕`;
-    if (q.includes('comida') || q.includes('hambre')) return state.hunger < 50 ? '¡Tengo mucha hambre! Dame algo de comer por favor 🥺' : '¡Estoy lleno y feliz! 😋';
+    if (q.includes('como estas') || q.includes('cómo estás')) return `¡Me siento con ${Math.round(state.energy)}% de energía y ganas de comer algo rico! 🍎`;
+    if (q.includes('comida') || q.includes('hambre')) return state.hunger < 50 ? '¡Tengo mucha hambre! Cómprame algo en la tienda 🥺' : '¡Estoy lleno y feliz! 😋';
     if (q.includes('quien eres') || q.includes('quién eres')) return `¡Soy ${name}! Tu conejo virtual favorito 🐰❤️`;
-    if (q.includes('monedas') || q.includes('dinero')) return `¡Tenemos 🪙 ${save.coins} monedas! Podríamos ir a la tienda 🛒`;
-    
-    const randomReplies = [
-      '¡Eso suena genial! 🐰✨',
-      '¡Salteemos de alegría! 🐾',
-      '¿Me compras una zanahoria? 🥕🥺',
-      '¡Me encanta platicar contigo!',
-      '¡Avisame si quieres jugar a atrapar estrellas! ⭐'
-    ];
-    return randomReplies[Math.floor(Math.random() * randomReplies.length)];
+    if (q.includes('monedas') || q.includes('dinero')) return `¡Tenemos 🪙 ${save.coins} monedas! Podemos comprar ropa o accesorios 🛒`;
+    return ['¡Eso suena genial! 🐰✨','¡Salteemos de alegría! 🐾','¿Jugamos a las matemáticas? ➕','¡Me encanta platicar contigo!'][Math.floor(Math.random()*4)];
   }
 
   chatForm.addEventListener('submit', async e => {
